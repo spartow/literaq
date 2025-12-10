@@ -182,6 +182,7 @@ function NewCollectionDialog({
   const [description, setDescription] = useState('');
   const [color, setColor] = useState('#6366f1');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const colors = [
     '#6366f1', // indigo
@@ -199,6 +200,8 @@ function NewCollectionDialog({
     if (!name.trim()) return;
 
     setIsSubmitting(true);
+    setError(null);
+    
     try {
       const res = await fetch('/api/collections', {
         method: 'POST',
@@ -208,17 +211,27 @@ function NewCollectionDialog({
 
       if (res.ok) {
         onSuccess();
+      } else {
+        const data = await res.json();
+        setError(data.error || 'Failed to create collection');
       }
-    } catch (error) {
-      console.error('Failed to create collection:', error);
+    } catch (err) {
+      console.error('Failed to create collection:', err);
+      setError('Failed to create collection. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
+    <div 
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+      onClick={onClose}
+    >
+      <div 
+        className="bg-white rounded-lg shadow-xl w-full max-w-md p-6"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 className="text-lg font-semibold text-gray-900 mb-4">
           New Collection
         </h2>
@@ -269,6 +282,12 @@ function NewCollectionDialog({
               ))}
             </div>
           </div>
+
+          {error && (
+            <div className="p-3 bg-red-50 border border-red-200 rounded-md">
+              <p className="text-sm text-red-600">{error}</p>
+            </div>
+          )}
 
           <div className="flex gap-3 pt-4">
             <button
