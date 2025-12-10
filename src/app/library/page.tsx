@@ -71,7 +71,7 @@ export default function LibraryPage() {
                 onClick={() => router.push('/search')}
                 className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium"
               >
-                Search arXiv
+                Search Literature
               </button>
             </div>
 
@@ -104,7 +104,7 @@ export default function LibraryPage() {
                 <p className="text-gray-600 mb-6">
                   {searchQuery
                     ? 'Try adjusting your search query'
-                    : 'Upload a PDF or search arXiv to get started'}
+                    : 'Upload a PDF or search our literature database to get started'}
                 </p>
                 {!searchQuery && (
                   <div className="flex gap-4 justify-center">
@@ -118,7 +118,7 @@ export default function LibraryPage() {
                       onClick={() => router.push('/search')}
                       className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
                     >
-                      Search arXiv
+                      Search Literature
                     </button>
                   </div>
                 )}

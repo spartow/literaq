@@ -59,7 +59,7 @@ export default function SearchPage() {
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-8 py-6">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-3xl font-bold text-gray-900">Search Papers</h1>
+            <h1 className="text-3xl font-bold text-gray-900">Search Literature</h1>
             <button
               onClick={() => router.push('/library')}
               className="px-4 py-2 text-sm text-gray-700 hover:text-gray-900 font-medium"
@@ -77,7 +77,7 @@ export default function SearchPage() {
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search arXiv for papers... (e.g., 'neural networks', 'quantum computing')"
+                  placeholder="Search academic papers and research... (e.g., 'neural networks', 'quantum computing')"
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-base"
                   autoFocus
                 />
@@ -93,7 +93,7 @@ export default function SearchPage() {
 
             <div className="mt-3 flex items-center justify-between">
               <div className="text-sm text-gray-600">
-                <span className="font-medium">Powered by arXiv</span> - Search millions of research papers
+                Search millions of academic papers and research articles
               </div>
               <button
                 onClick={() => setShowFilters(!showFilters)}
@@ -168,7 +168,7 @@ export default function SearchPage() {
         {isSearching ? (
           <div className="text-center py-12">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"></div>
-            <p className="mt-4 text-gray-600">Searching arXiv...</p>
+            <p className="mt-4 text-gray-600">Searching literature database...</p>
           </div>
         ) : hasSearched && results.length === 0 ? (
           <div className="text-center py-12">
@@ -252,13 +252,6 @@ function SearchResultCard({ result }: { result: SearchResult }) {
 
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
-      {/* Source Badge */}
-      <div className="mb-3">
-        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800">
-          arXiv:{result.arxivId}
-        </span>
-      </div>
-
       {/* Title */}
       <h3 className="text-xl font-semibold text-gray-900 mb-3 leading-tight">
         {result.title}
@@ -305,7 +298,7 @@ function SearchResultCard({ result }: { result: SearchResult }) {
           className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium flex items-center gap-2"
         >
           <ExternalLink className="w-4 h-4" />
-          View on arXiv
+          View PDF
         </a>
       </div>
 
