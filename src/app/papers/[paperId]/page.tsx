@@ -219,10 +219,10 @@ export default function PaperPage() {
 
         {/* Right Side - Summary + Chat */}
         <div className="w-96 lg:w-[28rem] flex flex-col bg-gray-50">
-          <div className="p-4 space-y-4 overflow-y-auto">
+          <div className="p-4 space-y-4 overflow-y-auto max-h-[280px] flex-shrink-0 border-b border-gray-200">
             <PaperSummaryCard paperId={paper.id} />
           </div>
-          <div className="flex-1 border-t border-gray-200">
+          <div className="flex-1 min-h-0">
             <ChatPanel paperId={paper.id} paperTitle={paper.title || paper.originalFilename} />
           </div>
         </div>
