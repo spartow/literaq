@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, Download, ExternalLink, FileText, User, Calendar, SlidersHorizontal } from 'lucide-react';
+import { Search, Download, ExternalLink, FileText, User, Calendar, SlidersHorizontal, Home, Library, Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 interface SearchResult {
   id: string;
@@ -57,15 +58,34 @@ export default function SearchPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
+        {/* Top Navigation */}
+        <div className="border-b border-gray-200 px-8 py-3">
+          <div className="max-w-7xl mx-auto flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <FileText className="w-6 h-6 text-indigo-600" />
+              <span className="text-xl font-bold text-gray-900">Literaq</span>
+            </Link>
+            <div className="flex items-center gap-4">
+              <Link href="/assistant" className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-indigo-600 transition-colors">
+                <Sparkles className="w-4 h-4" />
+                <span className="text-sm font-medium">AI Tools</span>
+              </Link>
+              <Link href="/library" className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-indigo-600 transition-colors">
+                <Library className="w-4 h-4" />
+                <span className="text-sm font-medium">Library</span>
+              </Link>
+              <Link href="/" className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-indigo-600 transition-colors">
+                <Home className="w-4 h-4" />
+                <span className="text-sm font-medium">Home</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Page Header */}
         <div className="max-w-7xl mx-auto px-8 py-6">
-          <div className="flex items-center justify-between mb-6">
+          <div className="mb-6">
             <h1 className="text-3xl font-bold text-gray-900">Search Literature</h1>
-            <button
-              onClick={() => router.push('/library')}
-              className="px-4 py-2 text-sm text-gray-700 hover:text-gray-900 font-medium"
-            >
-              ← Back to Library
-            </button>
           </div>
 
           {/* Search Form */}
