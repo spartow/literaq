@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+  extensions = [vector]
+}
+
+model User {
+  id                String        @id @default(uuid())
+  clerkId           String        @unique @map("clerk_id")
+  email             String        @unique
+  name              String?
+  stripeCustomerId  String?       @unique @map("stripe_customer_id")
+  subscriptionStatus String       @default("free") @map("subscription_status") // free, active, cancelled, past_due
+  subscriptionPlan  String?       @map("subscription_plan") // basic, pro
+  subscriptionEndDate DateTime?   @map("subscription_end_date")
+  paperCount        Int           @default(0) @map("paper_count")
+  createdAt         DateTime      @default(now()) @map("created_at")
+  updatedAt         DateTime      @updatedAt @map("updated_at")
+  
+  papers            Paper[]
+
+  @@map("users")
+}
+
+model Paper {
+  id                String        @id @default(uuid())
+  userId            String        @map("user_id")
+  title             String?
+  originalFilename  String        @map("original_filename")
+  fileUrl           String?       @map("file_url")
+  status            String        @default("processing") // processing, ready, failed
+  createdAt         DateTime      @default(now()) @map("created_at")
+  
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chunks            PaperChunk[]
+  chatSessions      ChatSession[]
+
+  @@index([userId])
+  @@map("papers")
+}
+
+model PaperChunk {
+  id           String                 @id @default(uuid())
+  paperId      String                 @map("paper_id")
+  chunkIndex   Int                    @map("chunk_index")
+  content      String                 @db.Text
+  embedding    Unsupported("vector(1536)")?
+  
+  paper        Paper                  @relation(fields: [paperId], references: [id], onDelete: Cascade)
+
+  @@index([paperId])
+  @@map("paper_chunks")
+}
+
+model ChatSession {
+  id          String        @id @default(uuid())
+  paperId     String        @map("paper_id")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  
+  paper       Paper         @relation(fields: [paperId], references: [id], onDelete: Cascade)
+  messages    ChatMessage[]
+
+  @@index([paperId])
+  @@map("chat_sessions")
+}
+
+model ChatMessage {
+  id              String      @id @default(uuid())
+  chatSessionId   String      @map("chat_session_id")
+  role            String      // user or assistant
+  content         String      @db.Text
+  sourceChunkIds  String[]    @default([]) @map("source_chunk_ids")
+  createdAt       DateTime    @default(now()) @map("created_at")
+  
+  chatSession     ChatSession @relation(fields: [chatSessionId], references: [id], onDelete: Cascade)
+
+  @@index([chatSessionId])
+  @@map("chat_messages")
+}
