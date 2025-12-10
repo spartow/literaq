@@ -13,12 +13,13 @@ export async function GET(req: NextRequest) {
     const query = searchParams.get('q');
     const sources = searchParams.get('sources')?.split(',') as ('arxiv' | 'pubmed')[] || ['arxiv'];
     const maxResults = parseInt(searchParams.get('max') || '10', 10);
+    const sortBy = (searchParams.get('sort') || 'relevance') as 'relevance' | 'date';
 
     if (!query) {
       return NextResponse.json({ error: 'Query parameter required' }, { status: 400 });
     }
 
-    const results = await searchPapers(query, sources, maxResults);
+    const results = await searchPapers(query, sources, maxResults, sortBy);
 
     return NextResponse.json({
       query,

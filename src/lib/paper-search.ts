@@ -20,11 +20,13 @@ export interface SearchResult {
  */
 export async function searchArxiv(
   query: string,
-  maxResults: number = 10
+  maxResults: number = 10,
+  sortBy: 'relevance' | 'date' = 'relevance'
 ): Promise<SearchResult[]> {
   try {
     const searchQuery = encodeURIComponent(query);
-    const url = `http://export.arxiv.org/api/query?search_query=all:${searchQuery}&start=0&max_results=${maxResults}&sortBy=relevance&sortOrder=descending`;
+    const sortParam = sortBy === 'date' ? 'submittedDate' : 'relevance';
+    const url = `http://export.arxiv.org/api/query?search_query=all:${searchQuery}&start=0&max_results=${maxResults}&sortBy=${sortParam}&sortOrder=descending`;
 
     const response = await fetch(url);
     const xmlText = await response.text();
@@ -96,12 +98,13 @@ export async function searchPubMed(
 export async function searchPapers(
   query: string,
   sources: ('arxiv' | 'pubmed')[] = ['arxiv'],
-  maxResults: number = 10
+  maxResults: number = 10,
+  sortBy: 'relevance' | 'date' = 'relevance'
 ): Promise<SearchResult[]> {
   const promises: Promise<SearchResult[]>[] = [];
 
   if (sources.includes('arxiv')) {
-    promises.push(searchArxiv(query, maxResults));
+    promises.push(searchArxiv(query, maxResults, sortBy));
   }
 
   if (sources.includes('pubmed')) {

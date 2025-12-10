@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, Download, ExternalLink, FileText, User, Calendar } from 'lucide-react';
+import { Search, Download, ExternalLink, FileText, User, Calendar, SlidersHorizontal } from 'lucide-react';
 
 interface SearchResult {
   id: string;
@@ -21,6 +21,9 @@ export default function SearchPage() {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
+  const [maxResults, setMaxResults] = useState(20);
+  const [sortBy, setSortBy] = useState<'relevance' | 'date'>('relevance');
+  const [showFilters, setShowFilters] = useState(false);
   const router = useRouter();
 
   const handleSearch = async (e: React.FormEvent) => {
@@ -32,7 +35,7 @@ export default function SearchPage() {
 
     try {
       const res = await fetch(
-        `/api/search/papers?q=${encodeURIComponent(query)}&sources=arxiv&max=20`
+        `/api/search/papers?q=${encodeURIComponent(query)}&sources=arxiv&max=${maxResults}&sort=${sortBy}`
       );
       
       if (res.ok) {
@@ -45,6 +48,10 @@ export default function SearchPage() {
       setIsSearching(false);
     }
   };
+
+  const filteredResults = results.filter((result) => {
+    return true; // Can add date filtering here
+  });
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -84,10 +91,75 @@ export default function SearchPage() {
               </button>
             </div>
 
-            <div className="mt-3 text-sm text-gray-600">
-              <span className="font-medium">Powered by arXiv</span> - Search millions of research papers
+            <div className="mt-3 flex items-center justify-between">
+              <div className="text-sm text-gray-600">
+                <span className="font-medium">Powered by arXiv</span> - Search millions of research papers
+              </div>
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className="flex items-center gap-2 px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <SlidersHorizontal className="w-4 h-4" />
+                Filters
+              </button>
             </div>
           </form>
+
+          {/* Filters Panel */}
+          {showFilters && (
+            <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Sort By */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Sort By
+                  </label>
+                  <select
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value as 'relevance' | 'date')}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
+                    <option value="relevance">Relevance</option>
+                    <option value="date">Most Recent</option>
+                  </select>
+                </div>
+
+                {/* Max Results */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Results Per Page
+                  </label>
+                  <select
+                    value={maxResults}
+                    onChange={(e) => setMaxResults(Number(e.target.value))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
+                    <option value="10">10 papers</option>
+                    <option value="20">20 papers</option>
+                    <option value="50">50 papers</option>
+                    <option value="100">100 papers</option>
+                  </select>
+                </div>
+
+                {/* Year Filter (Placeholder) */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Publication Year
+                  </label>
+                  <select
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
+                    <option value="">All years</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -104,13 +176,16 @@ export default function SearchPage() {
             <h3 className="text-lg font-medium text-gray-900 mb-2">No papers found</h3>
             <p className="text-gray-600">Try adjusting your search query</p>
           </div>
-        ) : results.length > 0 ? (
+        ) : filteredResults.length > 0 ? (
           <div>
-            <div className="mb-6 text-sm text-gray-600">
-              Found <span className="font-medium text-gray-900">{results.length}</span> papers
+            <div className="mb-6 flex items-center justify-between">
+              <div className="text-sm text-gray-600">
+                Found <span className="font-medium text-gray-900">{filteredResults.length}</span> papers
+                {sortBy === 'date' && <span className="ml-2">(sorted by most recent)</span>}
+              </div>
             </div>
             <div className="space-y-4">
-              {results.map((result) => (
+              {filteredResults.map((result) => (
                 <SearchResultCard key={result.id} result={result} />
               ))}
             </div>
