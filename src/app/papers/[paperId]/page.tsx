@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { FileText, Loader2, AlertCircle, ArrowLeft } from 'lucide-react';
+import { FileText, Loader2, AlertCircle, ArrowLeft, Download, MoreVertical } from 'lucide-react';
 import PDFViewer from '@/components/PDFViewer';
 import ChatPanel from '@/components/ChatPanel';
+import { PaperSummaryCard } from '@/components/paper-summary';
 
 interface Paper {
   id: string;
@@ -23,6 +24,7 @@ export default function PaperPage() {
   const [paper, setPaper] = useState<Paper | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showExportMenu, setShowExportMenu] = useState(false);
 
   useEffect(() => {
     const fetchPaper = async () => {
@@ -127,22 +129,70 @@ export default function PaperPage() {
       <header className="bg-white shadow-sm border-b border-gray-200">
         <div className="px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 flex-1 min-w-0">
               <button
-                onClick={() => router.push('/')}
+                onClick={() => router.push('/library')}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
               >
                 <ArrowLeft className="w-5 h-5 text-gray-600" />
               </button>
-              <FileText className="w-6 h-6 text-indigo-600" />
-              <div>
-                <h1 className="text-lg font-semibold text-gray-900 truncate max-w-xl">
+              <FileText className="w-6 h-6 text-indigo-600 flex-shrink-0" />
+              <div className="min-w-0 flex-1">
+                <h1 className="text-lg font-semibold text-gray-900 truncate">
                   {paper.title || paper.originalFilename}
                 </h1>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-500 truncate">
                   {paper.originalFilename}
                 </p>
               </div>
+            </div>
+            <div className="relative ml-4">
+              <button
+                onClick={() => setShowExportMenu(!showExportMenu)}
+                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                <span className="text-sm font-medium">Export</span>
+              </button>
+              {showExportMenu && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
+                  <a
+                    href={`/api/papers/${paperId}/export?format=bibtex`}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-t-lg"
+                    onClick={() => setShowExportMenu(false)}
+                  >
+                    BibTeX
+                  </a>
+                  <a
+                    href={`/api/papers/${paperId}/export?format=ris`}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                    onClick={() => setShowExportMenu(false)}
+                  >
+                    RIS
+                  </a>
+                  <a
+                    href={`/api/papers/${paperId}/export?format=apa`}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                    onClick={() => setShowExportMenu(false)}
+                  >
+                    APA
+                  </a>
+                  <a
+                    href={`/api/papers/${paperId}/export?format=mla`}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                    onClick={() => setShowExportMenu(false)}
+                  >
+                    MLA
+                  </a>
+                  <a
+                    href={`/api/papers/${paperId}/export?format=chicago`}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-b-lg"
+                    onClick={() => setShowExportMenu(false)}
+                  >
+                    Chicago
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -167,9 +217,14 @@ export default function PaperPage() {
           )}
         </div>
 
-        {/* Chat Panel - Right Side */}
-        <div className="w-96 lg:w-[28rem]">
-          <ChatPanel paperId={paper.id} paperTitle={paper.title || paper.originalFilename} />
+        {/* Right Side - Summary + Chat */}
+        <div className="w-96 lg:w-[28rem] flex flex-col bg-gray-50">
+          <div className="p-4 space-y-4 overflow-y-auto">
+            <PaperSummaryCard paperId={paper.id} />
+          </div>
+          <div className="flex-1 border-t border-gray-200">
+            <ChatPanel paperId={paper.id} paperTitle={paper.title || paper.originalFilename} />
+          </div>
         </div>
       </div>
     </div>
