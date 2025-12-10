@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUser, UserButton } from '@clerk/nextjs';
-import { Upload, FileText, Loader2, CreditCard } from 'lucide-react';
+import { Upload, FileText, Loader2, CreditCard, Library, Search } from 'lucide-react';
 import Link from 'next/link';
 
 export default function HomePage() {
@@ -91,6 +91,20 @@ export default function HomePage() {
             <div className="flex items-center gap-4">
               {isSignedIn ? (
                 <>
+                  <Link
+                    href="/library"
+                    className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-indigo-600 transition-colors"
+                  >
+                    <Library className="w-4 h-4" />
+                    <span>Library</span>
+                  </Link>
+                  <Link
+                    href="/search"
+                    className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-indigo-600 transition-colors"
+                  >
+                    <Search className="w-4 h-4" />
+                    <span>Search</span>
+                  </Link>
                   <Link
                     href="/pricing"
                     className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-indigo-600 transition-colors"
