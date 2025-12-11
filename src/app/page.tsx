@@ -310,7 +310,7 @@ export default function HomePage() {
 
       {/* Right Sidebar - Task Builder */}
       <aside className="w-96 bg-gradient-to-b from-gray-50 to-white border-l border-gray-200 overflow-y-auto shadow-xl">
-        <div className="sticky top-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 p-6 z-10">
+        <div className="sticky top-[73px] bg-white/95 backdrop-blur-sm border-b border-gray-200 p-6 z-10">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
               <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
