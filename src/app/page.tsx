@@ -87,8 +87,8 @@ export default function HomePage() {
       <main className="flex-1 overflow-y-auto bg-gradient-to-br from-gray-50 via-white to-indigo-50">
         {/* Top Navigation Bar */}
         <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
-          <div className="max-w-7xl mx-auto px-6 py-4">
-            <div className="flex items-center justify-end">
+          <div className="max-w-7xl mx-auto px-8 py-4">
+            <div className="flex items-center justify-end pr-4">
               {/* Right Side - Credits, Pricing, Auth Buttons */}
               <div className="flex items-center gap-3">
                 {/* Credits Display */}
