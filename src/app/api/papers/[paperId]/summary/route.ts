@@ -1,4 +1,4 @@
-import { auth } from '@clerk/nextjs';
+import { auth } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { generateTLDR, extractKeyFindings, summarizeMethodology } from '@/lib/ai-features';
 import { prisma } from '@/lib/db';

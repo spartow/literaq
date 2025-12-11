@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 import { v4 as uuidv4 } from 'uuid';
 import { prisma } from '@/lib/db';
 import { extractTextFromPDF, extractTitleFromText } from '@/lib/pdf-processor';
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
         data: {
           clerkId: user.id,
           email: user.emailAddresses[0]?.emailAddress || '',
-          name: user.fullName,
+          name: `${user.firstName || ''} ${user.lastName || ''}`.trim() || 'User',
         },
       });
     }

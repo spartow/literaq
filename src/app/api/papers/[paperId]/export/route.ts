@@ -1,4 +1,4 @@
-import { auth } from '@clerk/nextjs';
+import { auth } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { generateAllCitations, generateBibTeX, generateRIS, generateAPA, generateMLA, generateChicago } from '@/lib/citation';

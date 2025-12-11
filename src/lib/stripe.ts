@@ -1,13 +1,16 @@
 import Stripe from 'stripe';
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error('STRIPE_SECRET_KEY is not set');
+function getStripeInstance() {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    throw new Error('STRIPE_SECRET_KEY is not set');
+  }
+  return new Stripe(process.env.STRIPE_SECRET_KEY, {
+    apiVersion: '2023-10-16',
+    typescript: true,
+  });
 }
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2023-10-16',
-  typescript: true,
-});
+export const stripe = process.env.STRIPE_SECRET_KEY ? getStripeInstance() : null;
 
 export async function createCheckoutSession(
   userId: string,
@@ -15,6 +18,9 @@ export async function createCheckoutSession(
   priceId: string,
   plan: string
 ) {
+  if (!stripe) {
+    throw new Error('Stripe is not configured');
+  }
   const session = await stripe.checkout.sessions.create({
     customer_email: userEmail,
     line_items: [
@@ -36,6 +42,9 @@ export async function createCheckoutSession(
 }
 
 export async function createBillingPortalSession(customerId: string) {
+  if (!stripe) {
+    throw new Error('Stripe is not configured');
+  }
   const session = await stripe.billingPortal.sessions.create({
     customer: customerId,
     return_url: `${process.env.NEXT_PUBLIC_APP_URL}/`,

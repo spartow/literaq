@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { CollectionsSidebar } from '@/components/collections-sidebar';
-import { FileText, Calendar, User, Tag, Download, Trash2, FolderPlus, Home, Sparkles } from 'lucide-react';
+import { AppSidebar } from '@/components/app-sidebar';
+import { FileText, Calendar, User, Tag, Download, Trash2, FolderPlus, Sparkles, Search as SearchIcon } from 'lucide-react';
 import Link from 'next/link';
 
 interface Paper {
@@ -47,35 +47,11 @@ export default function LibraryPage() {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      {/* Collections Sidebar */}
-      <CollectionsSidebar />
+      {/* Sidebar */}
+      <AppSidebar />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Navigation */}
-        <div className="bg-white border-b border-gray-200 px-8 py-3">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <FileText className="w-6 h-6 text-indigo-600" />
-              <span className="text-xl font-bold text-gray-900">Literaq</span>
-            </Link>
-            <div className="flex items-center gap-4">
-              <Link href="/assistant" className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-indigo-600 transition-colors">
-                <Sparkles className="w-4 h-4" />
-                <span className="text-sm font-medium">AI Tools</span>
-              </Link>
-              <Link href="/search" className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-indigo-600 transition-colors">
-                <FileText className="w-4 h-4" />
-                <span className="text-sm font-medium">Search</span>
-              </Link>
-              <Link href="/" className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-indigo-600 transition-colors">
-                <Home className="w-4 h-4" />
-                <span className="text-sm font-medium">Home</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-
         {/* Header */}
         <div className="bg-white border-b border-gray-200 px-8 py-6">
           <div className="max-w-7xl mx-auto">

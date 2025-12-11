@@ -1,4 +1,4 @@
-import { auth } from '@clerk/nextjs';
+import { auth } from '@clerk/nextjs/server';
 import { NextRequest, NextResponse } from 'next/server';
 import { downloadArxivPDF } from '@/lib/paper-search';
 import { extractTextFromPDF } from '@/lib/pdf-processor';

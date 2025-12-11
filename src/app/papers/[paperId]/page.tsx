@@ -92,7 +92,7 @@ export default function PaperPage() {
             Processing your paper...
           </h2>
           <p className="text-gray-600">
-            We're extracting the text, generating embeddings, and preparing
+            We&rsquo;re extracting the text, generating embeddings, and preparing
             everything for you to chat with. This usually takes 1-2 minutes.
           </p>
         </div>
@@ -109,7 +109,7 @@ export default function PaperPage() {
             Processing failed
           </h2>
           <p className="text-gray-600">
-            We couldn't process this paper. Please try uploading again.
+            We couldn&rsquo;t process this paper. Please try uploading again.
           </p>
           <button
             onClick={() => router.push('/')}

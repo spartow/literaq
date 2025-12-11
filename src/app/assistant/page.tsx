@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { AppSidebar } from '@/components/app-sidebar';
 import { 
   FileText, 
   Table2, 
@@ -11,11 +12,8 @@ import {
   Download,
   Search,
   RefreshCw,
-  Wand2,
-  Home,
-  Library
+  Wand2
 } from 'lucide-react';
-import Link from 'next/link';
 
 type Tool = 
   | 'literature-review'
@@ -75,47 +73,25 @@ export default function AssistantPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200">
-        {/* Top Navigation */}
-        <div className="border-b border-gray-200 px-8 py-3">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <FileText className="w-6 h-6 text-indigo-600" />
-              <span className="text-xl font-bold text-gray-900">Literaq</span>
-            </Link>
-            <div className="flex items-center gap-4">
-              <Link href="/library" className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-indigo-600 transition-colors">
-                <Library className="w-4 h-4" />
-                <span className="text-sm font-medium">Library</span>
-              </Link>
-              <Link href="/search" className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-indigo-600 transition-colors">
-                <Search className="w-4 h-4" />
-                <span className="text-sm font-medium">Search</span>
-              </Link>
-              <Link href="/" className="flex items-center gap-2 px-3 py-2 text-gray-700 hover:text-indigo-600 transition-colors">
-                <Home className="w-4 h-4" />
-                <span className="text-sm font-medium">Home</span>
-              </Link>
-            </div>
-          </div>
-        </div>
+    <div className="flex h-screen bg-gray-50">
+      {/* Sidebar */}
+      <AppSidebar />
 
+      {/* Main Content */}
+      <div className="flex-1 overflow-y-auto">
         {/* Page Header */}
-        <div className="max-w-7xl mx-auto px-8 py-6">
-          <div>
+        <div className="bg-white border-b border-gray-200 px-8 py-6">
+          <div className="max-w-5xl mx-auto">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              AI Assistant to Automate Everyday Research Tasks
+              AI Assistant Tools
             </h1>
             <p className="text-gray-600">
-              Write a research paper or thesis, find & discover research papers and citations. Export it for you.
+              Automate everyday research tasks with powerful AI tools
             </p>
           </div>
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-8 py-12">
+        <div className="max-w-5xl mx-auto px-8 py-8">
         {!selectedTool ? (
           <div>
             <h2 className="text-xl font-semibold text-gray-900 mb-6">
@@ -164,6 +140,7 @@ export default function AssistantPage() {
             {selectedTool === 'paraphrase' && <ParaphraseTool />}
           </div>
         )}
+        </div>
       </div>
     </div>
   );
