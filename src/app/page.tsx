@@ -85,6 +85,61 @@ export default function HomePage() {
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto bg-gradient-to-br from-gray-50 via-white to-indigo-50">
+        {/* Top Navigation Bar */}
+        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+          <div className="max-w-7xl mx-auto px-6 py-4">
+            <div className="flex items-center justify-between">
+              {/* Logo */}
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">L</span>
+                </div>
+                <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                  LITERAQ
+                </span>
+              </div>
+
+              {/* Right Side - Credits, Pricing, Auth Buttons */}
+              <div className="flex items-center gap-3">
+                {/* Credits Display */}
+                <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg">
+                  <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                  <span className="text-sm font-semibold text-gray-900">100 Credits</span>
+                </div>
+
+                {/* Pricing Button */}
+                <a
+                  href="/pricing"
+                  className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
+                  <span className="text-sm font-semibold text-gray-700">Pricing</span>
+                </a>
+
+                {/* Sign In Button */}
+                <a
+                  href="/sign-in"
+                  className="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors"
+                >
+                  Sign In
+                </a>
+
+                {/* Sign Up Button */}
+                <a
+                  href="/sign-up"
+                  className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
+                >
+                  Sign Up
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+
         <div className="max-w-5xl mx-auto px-8 py-16">
         {/* Hero Section */}
         <div className="text-center mb-12">
