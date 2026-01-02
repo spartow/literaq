@@ -12,6 +12,8 @@ import {
   Check,
   Sparkles 
 } from 'lucide-react';
+import { AppSidebar } from '@/components/app-sidebar';
+import { PageHeader } from '@/components/page-header';
 
 export default function WritePage() {
   const router = useRouter();
@@ -50,16 +52,17 @@ export default function WritePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 relative">
-      {/* Header */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-8 py-6">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <FileText className="w-8 h-8 text-indigo-600" />
+    <div className="flex h-screen bg-gray-50">
+      <AppSidebar />
+      
+      <div className="flex-1 overflow-y-auto relative">
+        <PageHeader />
+        {/* Header */}
+        <div className="bg-white border-b border-gray-200">
+          <div className="max-w-7xl mx-auto px-8 py-6">
+            <div className="mb-6">
               <h1 className="text-3xl font-bold text-gray-900">{getPageTitle()}</h1>
             </div>
-          </div>
 
           {/* Tabs */}
           <div className="flex gap-4">
@@ -103,14 +106,15 @@ export default function WritePage() {
               </div>
             </button>
           </div>
+          </div>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-8 py-8">
-        {activeTab === 'paraphrase' && <ParaphraserTool />}
-        {activeTab === 'aidetector' && <AIDetectorTool />}
-        {activeTab === 'writer' && <AIWriterTool />}
+        {/* Content */}
+        <div className="max-w-7xl mx-auto px-8 py-8">
+          {activeTab === 'paraphrase' && <ParaphraserTool />}
+          {activeTab === 'aidetector' && <AIDetectorTool />}
+          {activeTab === 'writer' && <AIWriterTool />}
+        </div>
       </div>
     </div>
   );
