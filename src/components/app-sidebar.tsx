@@ -38,7 +38,7 @@ const aiToolsItems: NavItem[] = [
   { name: 'Document Chat', href: '/chat', icon: MessageSquare },
   { name: 'Research Review', href: '/assistant', icon: Search },
   { name: 'Topic Discovery', href: '/search', icon: Lightbulb },
-  { name: 'Citation Builder', href: '/assistant', icon: Quote },
+  { name: 'Citation Builder', href: '/citations', icon: Quote },
   { name: 'Data Extraction', href: '/assistant', icon: Zap },
 ];
 
