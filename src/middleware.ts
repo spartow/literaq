@@ -6,7 +6,16 @@ export default authMiddleware({
     '/sign-in(.*)',
     '/sign-up(.*)',
     '/pricing',
+    '/library',
+    '/assistant',
+    '/write',
+    '/chat',
+    '/search',
     '/api/webhooks/stripe',
+    '/api/writing/(.*)',
+    '/api/assistant/(.*)',
+    '/api/search/(.*)',
+    '/api/chat',
   ],
 });
 
