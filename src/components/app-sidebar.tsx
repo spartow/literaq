@@ -60,7 +60,7 @@ export function AppSidebar() {
           <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
             <FileText className="w-5 h-5 text-white" />
           </div>
-          <span className="text-xl font-bold text-gray-900">LITERAQ</span>
+          <span className="text-xl font-bold text-gray-900">Literaq</span>
         </div>
         <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
           <svg
