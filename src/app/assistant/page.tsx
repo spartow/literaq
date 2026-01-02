@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { AppSidebar } from '@/components/app-sidebar';
 import { PageHeader } from '@/components/page-header';
 import { 
@@ -88,8 +89,14 @@ export default function AssistantPage() {
       <div className="flex-1 overflow-y-auto relative">
         <PageHeader />
         {/* Page Header */}
-        <div className="bg-white border-b border-gray-200 px-8 py-6">
+        <div className="bg-white border-b border-gray-200 px-8 py-6 pt-16">
           <div className="max-w-5xl mx-auto">
+            <div className="flex items-center gap-3 mb-2">
+              <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <FileText className="w-8 h-8 text-indigo-600" />
+                <span className="text-xl font-bold text-gray-900">Literaq</span>
+              </Link>
+            </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               {getPageTitle()}
             </h1>

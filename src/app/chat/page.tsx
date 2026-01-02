@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Upload, FileText, Loader2, MessageSquare, Sparkles } from 'lucide-react';
 import { AppSidebar } from '@/components/app-sidebar';
 import { PageHeader } from '@/components/page-header';
@@ -83,7 +84,15 @@ export default function DocumentChatPage() {
 
       <main className="flex-1 overflow-y-auto relative">
         <PageHeader />
-        <div className="max-w-4xl mx-auto px-8 py-16">
+        <div className="max-w-4xl mx-auto px-8 py-16 pt-24">
+          {/* Literaq Logo */}
+          <div className="flex justify-center mb-8">
+            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <FileText className="w-8 h-8 text-indigo-600" />
+              <span className="text-xl font-bold text-gray-900">Literaq</span>
+            </Link>
+          </div>
+          
           {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl mb-6 shadow-lg">

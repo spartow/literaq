@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { AppSidebar } from '@/components/app-sidebar';
 import { PageHeader } from '@/components/page-header';
 import { Database, Zap, Download, FileText } from 'lucide-react';
@@ -56,21 +57,19 @@ export default function DataExtractionPage() {
       <div className="flex-1 overflow-y-auto relative">
         <PageHeader />
         {/* Header */}
-        <div className="bg-white border-b border-gray-200">
+        <div className="bg-white border-b border-gray-200 pt-16">
           <div className="max-w-5xl mx-auto px-8 py-6">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-purple-600" />
-                </div>
-                <h1 className="text-3xl font-bold text-gray-900">Data Extraction</h1>
+            <div className="flex items-center gap-3 mb-4">
+              <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <FileText className="w-8 h-8 text-indigo-600" />
+                <span className="text-xl font-bold text-gray-900">Literaq</span>
+              </Link>
+            </div>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                <Zap className="w-6 h-6 text-purple-600" />
               </div>
-              <button
-                onClick={() => router.push('/assistant')}
-                className="px-4 py-2 text-sm text-gray-700 hover:text-gray-900 font-medium"
-              >
-                ← Back to tools
-              </button>
+              <h1 className="text-3xl font-bold text-gray-900">Data Extraction</h1>
             </div>
             <p className="text-gray-600">Pull structured data from research papers</p>
           </div>
