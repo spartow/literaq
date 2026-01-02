@@ -97,6 +97,8 @@ function ParaphraserTool() {
     if (!inputText.trim()) return;
 
     setIsProcessing(true);
+    setOutputText(''); // Clear previous output
+    
     try {
       const res = await fetch('/api/writing/paraphrase', {
         method: 'POST',
@@ -106,10 +108,14 @@ function ParaphraserTool() {
 
       if (res.ok) {
         const data = await res.json();
-        setOutputText(data.paraphrased);
+        setOutputText(data.paraphrased || 'No paraphrased text returned');
+      } else {
+        const errorData = await res.json().catch(() => ({}));
+        setOutputText(`Error: ${errorData.error || 'Failed to paraphrase text. Please try again.'}`);
       }
     } catch (error) {
       console.error('Paraphrase error:', error);
+      setOutputText('Error: Unable to connect to paraphrase service. Please check your connection and try again.');
     } finally {
       setIsProcessing(false);
     }
