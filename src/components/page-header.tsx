@@ -1,12 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 
 export function PageHeader() {
   const { isSignedIn, user } = useUser();
   const [showCreditsDropdown, setShowCreditsDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowCreditsDropdown(false);
+      }
+    }
+
+    if (showCreditsDropdown) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showCreditsDropdown]);
 
   return (
     <div className="absolute top-6 right-6 z-50 flex items-center gap-3">
@@ -49,7 +66,7 @@ export function PageHeader() {
       )}
 
       {/* Hamburger Menu */}
-      <div className="relative">
+      <div className="relative" ref={dropdownRef}>
         <button
           onClick={() => setShowCreditsDropdown(!showCreditsDropdown)}
           className="p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors shadow-md"
@@ -60,7 +77,7 @@ export function PageHeader() {
         </button>
 
         {showCreditsDropdown && (
-          <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200">
+          <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 max-h-[calc(100vh-100px)] overflow-y-auto">
             {/* Credits Section - Only for signed in users */}
             {isSignedIn && (
               <div className="p-4 border-b border-gray-200">
