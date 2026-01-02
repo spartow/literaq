@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { Search, Download, ExternalLink, FileText, User, Calendar, SlidersHorizontal, Home, Library, Sparkles } from 'lucide-react';
 import Link from 'next/link';
-import { AppSidebar } from '@/components/app-sidebar';
 
 interface SearchResult {
   id: string;
@@ -69,14 +68,17 @@ export default function SearchPage() {
   });
 
   return (
-    <div className="flex h-screen bg-gray-50">
-      <AppSidebar />
-      
-      <div className="flex-1 overflow-y-auto">
-        {/* Header */}
-        <div className="bg-white border-b border-gray-200">
+    <div className="min-h-screen bg-gray-50 relative">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200">
         {/* Page Header */}
         <div className="max-w-7xl mx-auto px-8 py-6">
+          <div className="flex items-center gap-3 mb-6">
+            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <FileText className="w-8 h-8 text-indigo-600" />
+              <span className="text-xl font-bold text-gray-900">Literaq</span>
+            </Link>
+          </div>
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-gray-900">Topic Discovery</h1>
           </div>
@@ -174,9 +176,9 @@ export default function SearchPage() {
             </div>
           )}
         </div>
-        </div>
+      </div>
 
-        {/* Results */}
+      {/* Results */}
       <div className="max-w-7xl mx-auto px-8 py-8">
         {isSearching ? (
           <div className="text-center py-12">
