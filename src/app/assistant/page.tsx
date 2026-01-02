@@ -383,19 +383,34 @@ function ExtractDataTool() {
     if (!query.trim()) return;
 
     setIsSearching(true);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
     try {
       const res = await fetch('/api/assistant/extract-data', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query }),
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (res.ok) {
         const data = await res.json();
         setResults(data.results || []);
+      } else {
+        const errorData = await res.json().catch(() => ({}));
+        alert(errorData.error || 'Failed to extract data. Please try again.');
       }
     } catch (error) {
+      clearTimeout(timeoutId);
       console.error('Data extraction error:', error);
+      if (error instanceof Error && error.name === 'AbortError') {
+        alert('Request timed out. Please try a simpler query.');
+      } else {
+        alert('Failed to extract data. Please check your connection and try again.');
+      }
     } finally {
       setIsSearching(false);
     }
