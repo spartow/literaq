@@ -44,15 +44,27 @@ export default function HomePage() {
         body: formData,
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to upload file');
+        let errorMessage = 'Failed to upload file';
+        try {
+          const data = await response.json();
+          errorMessage = data?.error || data?.message || errorMessage;
+        } catch {
+          errorMessage = `Upload failed with status ${response.status}`;
+        }
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      
+      if (!data || !data.paperId) {
+        throw new Error('Invalid response from server');
       }
 
       // Navigate to paper page
       router.push(`/papers/${data.paperId}`);
     } catch (err) {
+      console.error('Upload error:', err);
       setError(err instanceof Error ? err.message : 'Failed to upload file');
       setIsUploading(false);
     }
