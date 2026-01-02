@@ -11,6 +11,7 @@ import {
   Check,
   Sparkles 
 } from 'lucide-react';
+import { PageHeader } from '@/components/page-header';
 
 export default function WritePage() {
   const router = useRouter();
@@ -38,7 +39,8 @@ export default function WritePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 relative">
+      <PageHeader />
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-8 py-6">

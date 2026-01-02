@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, Download, ExternalLink, FileText, User, Calendar, SlidersHorizontal, Home, Library, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import { PageHeader } from '@/components/page-header';
 
 interface SearchResult {
   id: string;
@@ -55,7 +56,8 @@ export default function SearchPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 relative">
+      <PageHeader />
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         {/* Top Navigation */}

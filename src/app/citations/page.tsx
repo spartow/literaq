@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AppSidebar } from '@/components/app-sidebar';
+import { PageHeader } from '@/components/page-header';
 import { Copy, Check, Search } from 'lucide-react';
 
 type CitationFormat = 'APA' | 'MLA' | 'Chicago' | 'Harvard';
@@ -96,7 +97,8 @@ export default function CitationsPage() {
     <div className="flex h-screen bg-gray-50">
       <AppSidebar />
 
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto relative">
+        <PageHeader />
         {/* Header */}
         <div className="bg-white border-b border-gray-200">
           <div className="max-w-5xl mx-auto px-8 py-6">

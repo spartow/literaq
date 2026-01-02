@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AppSidebar } from '@/components/app-sidebar';
+import { PageHeader } from '@/components/page-header';
 import { 
   FileText, 
   Table2, 
@@ -84,7 +85,8 @@ export default function AssistantPage() {
       <AppSidebar />
 
       {/* Main Content */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto relative">
+        <PageHeader />
         {/* Page Header */}
         <div className="bg-white border-b border-gray-200 px-8 py-6">
           <div className="max-w-5xl mx-auto">
