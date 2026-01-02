@@ -42,9 +42,9 @@ const aiToolsItems: NavItem[] = [
   { name: 'Topic Discovery', href: '/search', icon: Lightbulb },
   { name: 'Citation Builder', href: '/citations', icon: Quote },
   { name: 'Data Extraction', href: '/data-extraction', icon: Zap },
-  { name: 'Paraphraser', href: '/write?tab=paraphrase', icon: RefreshCw },
-  { name: 'AI Detector', href: '/write?tab=aidetector', icon: Shield },
-  { name: 'AI Writer', href: '/write?tab=writer', icon: Wand2 },
+  { name: 'Paraphraser', href: '/paraphrase', icon: RefreshCw },
+  { name: 'AI Detector', href: '/ai-detector', icon: Shield },
+  { name: 'AI Writer', href: '/ai-writer', icon: Wand2 },
 ];
 
 export function AppSidebar() {
