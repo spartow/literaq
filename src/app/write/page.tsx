@@ -16,13 +16,26 @@ export default function WritePage() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'paraphrase' | 'aidetector' | 'writer'>('paraphrase');
 
+  const getPageTitle = () => {
+    switch (activeTab) {
+      case 'paraphrase':
+        return 'Paraphraser';
+      case 'aidetector':
+        return 'AI Detector';
+      case 'writer':
+        return 'AI Writer';
+      default:
+        return 'Smart Writer';
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-8 py-6">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-3xl font-bold text-gray-900">AI Writing Tools</h1>
+            <h1 className="text-3xl font-bold text-gray-900">{getPageTitle()}</h1>
             <button
               onClick={() => router.push('/library')}
               className="px-4 py-2 text-sm text-gray-700 hover:text-gray-900 font-medium"
