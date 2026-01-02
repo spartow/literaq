@@ -89,6 +89,17 @@ export default function HomePage() {
 
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto bg-gradient-to-br from-gray-50 via-white to-indigo-50 relative">
+        {/* AI-Powered Badge - Top Center */}
+        <div className="absolute top-6 left-1/2 transform -translate-x-1/2 z-40">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-50 rounded-full border border-indigo-100">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+            </span>
+            <span className="text-xs font-medium text-indigo-700">AI-Powered Research Assistant</span>
+          </div>
+        </div>
+
         {/* Hamburger Menu - Top Right */}
         <div className="absolute top-6 right-6 z-50">
           <button
@@ -186,16 +197,9 @@ export default function HomePage() {
           )}
         </div>
 
-        <div className="w-full px-8 py-8">
+        <div className="w-full px-8 py-8 pt-20">
         {/* Hero Section */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-50 rounded-full mb-4">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-            </span>
-            <span className="text-xs font-medium text-indigo-700">AI-Powered Research Assistant</span>
-          </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-3">
             Transform Your Research<br />with Intelligent AI Assistance
           </h1>
