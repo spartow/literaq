@@ -87,7 +87,97 @@ export default function HomePage() {
       <AppSidebar />
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto bg-gradient-to-br from-gray-50 via-white to-indigo-50">
+      <main className="flex-1 overflow-y-auto bg-gradient-to-br from-gray-50 via-white to-indigo-50 relative">
+        {/* Hamburger Menu - Top Right */}
+        <div className="absolute top-6 right-6 z-50">
+          <button
+            onClick={() => setShowCreditsDropdown(!showCreditsDropdown)}
+            className="p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors shadow-md"
+          >
+            <svg className="w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          {showCreditsDropdown && (
+            <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200">
+              {/* Credits Section */}
+              <div className="p-4 border-b border-gray-200">
+                <div className="flex items-center justify-between px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <span className="text-sm font-semibold text-gray-900">100 Credits</span>
+                  </div>
+                </div>
+                <div className="mt-2 p-4 bg-gray-50 rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-medium text-gray-500">Plan</span>
+                    <span className="text-sm font-semibold text-gray-900">Basic</span>
+                  </div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm font-medium text-gray-700">Credits Remaining</span>
+                    <span className="text-lg font-bold text-gray-900">100 left</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Actions */}
+              <div className="p-4 border-b border-gray-200">
+                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Quick Actions</h3>
+                <div className="space-y-1">
+                  <Link href="/assistant" className="flex items-center gap-3 px-3 py-2 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setShowCreditsDropdown(false)}>
+                    <div className="w-5 h-5 bg-blue-500 rounded flex items-center justify-center">
+                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Review Literature</span>
+                  </Link>
+                  <Link href="/search" className="flex items-center gap-3 px-3 py-2 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setShowCreditsDropdown(false)}>
+                    <div className="w-5 h-5 bg-pink-500 rounded flex items-center justify-center">
+                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Search Papers</span>
+                  </Link>
+                  <Link href="/write" className="flex items-center gap-3 px-3 py-2 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setShowCreditsDropdown(false)}>
+                    <div className="w-5 h-5 bg-red-500 rounded flex items-center justify-center">
+                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Write a Draft</span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Menu Items */}
+              <div className="p-2">
+                <Link href="/pricing" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setShowCreditsDropdown(false)}>
+                  <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
+                  <span className="text-sm font-semibold text-gray-700">Pricing</span>
+                </Link>
+                <Link href="/sign-in" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setShowCreditsDropdown(false)}>
+                  <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                  </svg>
+                  <span className="text-sm font-semibold text-gray-700">Sign In</span>
+                </Link>
+                <Link href="/sign-up" className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all mt-2" onClick={() => setShowCreditsDropdown(false)}>
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                  </svg>
+                  <span className="text-sm font-semibold">Sign Up</span>
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
 
         <div className="w-full px-8 py-8">
         {/* Hero Section */}
