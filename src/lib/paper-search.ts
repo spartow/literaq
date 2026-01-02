@@ -26,7 +26,7 @@ export async function searchArxiv(
   try {
     const searchQuery = encodeURIComponent(query);
     const sortParam = sortBy === 'date' ? 'submittedDate' : 'relevance';
-    const url = `http://export.arxiv.org/api/query?search_query=all:${searchQuery}&start=0&max_results=${maxResults}&sortBy=${sortParam}&sortOrder=descending`;
+    const url = `https://export.arxiv.org/api/query?search_query=all:${searchQuery}&start=0&max_results=${maxResults}&sortBy=${sortParam}&sortOrder=descending`;
 
     const response = await fetch(url);
     const xmlText = await response.text();
