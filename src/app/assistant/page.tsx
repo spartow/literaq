@@ -28,9 +28,9 @@ export default function AssistantPage() {
   const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
 
   const getPageTitle = () => {
-    if (!selectedTool) return 'AI Assistant Tools';
+    if (!selectedTool) return 'Research Review';
     const tool = tools.find(t => t.id === selectedTool);
-    return tool ? tool.name : 'AI Assistant Tools';
+    return tool ? tool.name : 'Research Review';
   };
 
   const tools = [
