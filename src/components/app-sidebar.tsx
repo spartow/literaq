@@ -65,16 +65,6 @@ export function AppSidebar() {
         </div>
       </div>
 
-      {/* New Chat Button */}
-      <div className="p-4">
-        <Link href="/">
-          <button className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-white border-2 border-gray-200 rounded-xl hover:bg-gray-50 transition-colors">
-            <Plus className="w-5 h-5 text-gray-700" />
-            <span className="font-semibold text-gray-900">New Chat</span>
-          </button>
-        </Link>
-      </div>
-
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto px-4 py-2">
         {/* Main Navigation */}
