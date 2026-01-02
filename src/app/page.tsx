@@ -131,34 +131,34 @@ export default function HomePage() {
           </div>
         </header>
 
-        <div className="max-w-5xl mx-auto px-8 py-16">
+        <div className="max-w-5xl mx-auto px-8 py-8">
         {/* Hero Section */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 rounded-full mb-6">
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-50 rounded-full mb-4">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
             </span>
-            <span className="text-sm font-medium text-indigo-700">AI-Powered Research Assistant</span>
+            <span className="text-xs font-medium text-indigo-700">AI-Powered Research Assistant</span>
           </div>
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-3xl font-bold text-gray-900 mb-3">
             Transform Your Research<br />with Intelligent AI Assistance
           </h1>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Describe your research goal below and let Literaq&apos;s AI handle the heavy lifting - from data analysis to paper summaries, we&apos;ve got you covered.
           </p>
         </div>
 
         {/* AI Prompt Input */}
-        <div className="mb-8">
-          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 backdrop-blur-sm bg-white/90">
+        <div className="mb-6">
+          <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 backdrop-blur-sm bg-white/90">
             <textarea
               placeholder="What would you like help with today? Describe your research task..."
-              className="w-full min-h-[120px] px-4 py-3 text-gray-900 placeholder-gray-400 border-0 focus:outline-none focus:ring-0 resize-none text-lg"
+              className="w-full min-h-[80px] px-3 py-2 text-gray-900 placeholder-gray-400 border-0 focus:outline-none focus:ring-0 resize-none text-sm"
             />
-            <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+            <div className="flex items-center justify-between pt-3 border-t border-gray-200">
               <div className="flex items-center gap-2">
-                <label className="p-2 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer">
+                <label className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer">
                   <input
                     type="file"
                     accept=".pdf"
@@ -166,28 +166,28 @@ export default function HomePage() {
                     className="hidden"
                     disabled={isUploading}
                   />
-                  <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                   </svg>
                 </label>
-                <button className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors">
-                  <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <button className="flex items-center gap-1.5 px-2.5 py-1.5 hover:bg-gray-100 rounded-lg transition-colors">
+                  <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  <span className="text-sm font-medium text-gray-700">All</span>
-                  <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <span className="text-xs font-medium text-gray-700">All</span>
+                  <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
-                  <svg className="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <button className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                  <svg className="w-4 h-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
-                  <span className="text-sm font-medium text-gray-700">Enhanced Search</span>
+                  <span className="text-xs font-medium text-gray-700">Enhanced Search</span>
                 </button>
               </div>
-              <button className="p-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-lg transition-all shadow-lg">
-                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <button className="p-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-lg transition-all shadow-lg">
+                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                 </svg>
               </button>
@@ -197,37 +197,37 @@ export default function HomePage() {
 
 
         {/* Features */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16 mt-8">
-          <div className="group bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-            <div className="relative mb-6">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 w-14 h-14 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
-              <div className="relative bg-gradient-to-br from-indigo-500 to-purple-600 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                <Upload className="w-7 h-7 text-white" />
+        <div className="grid md:grid-cols-3 gap-4 mb-8 mt-6">
+          <div className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="relative mb-4">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 w-10 h-10 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
+              <div className="relative bg-gradient-to-br from-indigo-500 to-purple-600 w-10 h-10 rounded-xl flex items-center justify-center mx-auto shadow-lg">
+                <Upload className="w-5 h-5 text-white" />
               </div>
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-3">Quick Upload</h3>
-            <p className="text-gray-600 leading-relaxed">
+            <h3 className="text-sm font-bold text-gray-900 mb-2">Quick Upload</h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
               Drop your PDF and start getting insights immediately - no complicated setup required
             </p>
           </div>
-          <div className="group bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-            <div className="relative mb-6">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-600 w-14 h-14 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
-              <div className="relative bg-gradient-to-br from-blue-500 to-cyan-600 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
-                <FileText className="w-7 h-7 text-white" />
+          <div className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="relative mb-4">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-600 w-10 h-10 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
+              <div className="relative bg-gradient-to-br from-blue-500 to-cyan-600 w-10 h-10 rounded-xl flex items-center justify-center mx-auto shadow-lg">
+                <FileText className="w-5 h-5 text-white" />
               </div>
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-3">Intelligent Processing</h3>
-            <p className="text-gray-600 leading-relaxed">
+            <h3 className="text-sm font-bold text-gray-900 mb-2">Intelligent Processing</h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
               Our AI instantly understands your documents using advanced machine learning
             </p>
           </div>
-          <div className="group bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-            <div className="relative mb-6">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 w-14 h-14 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
-              <div className="relative bg-gradient-to-br from-purple-500 to-pink-600 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+          <div className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div className="relative mb-4">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 w-10 h-10 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
+              <div className="relative bg-gradient-to-br from-purple-500 to-pink-600 w-10 h-10 rounded-xl flex items-center justify-center mx-auto shadow-lg">
                 <svg
-                  className="w-7 h-7 text-white"
+                  className="w-5 h-5 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -241,8 +241,8 @@ export default function HomePage() {
                 </svg>
               </div>
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-3">Conversational AI</h3>
-            <p className="text-gray-600 leading-relaxed">
+            <h3 className="text-sm font-bold text-gray-900 mb-2">Conversational AI</h3>
+            <p className="text-xs text-gray-600 leading-relaxed">
               Get precise answers to your research questions through natural conversation
             </p>
           </div>
