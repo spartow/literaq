@@ -14,6 +14,7 @@ export default function HomePage() {
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showCreditsDropdown, setShowCreditsDropdown] = useState(false);
 
   const handleFileUpload = async (file: File) => {
     if (!file) return;
@@ -93,12 +94,59 @@ export default function HomePage() {
             <div className="flex items-center justify-end pr-20">
               {/* Right Side - Credits, Pricing, Auth Buttons */}
               <div className="flex items-center gap-3">
-                {/* Credits Display */}
-                <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg">
-                  <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                  </svg>
-                  <span className="text-sm font-semibold text-gray-900">100 Credits</span>
+                {/* Credits Dropdown */}
+                <div className="relative">
+                  <button
+                    onClick={() => setShowCreditsDropdown(!showCreditsDropdown)}
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <span className="text-sm font-semibold text-gray-900">100 Credits</span>
+                    <svg className="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  {showCreditsDropdown && (
+                    <div className="absolute right-0 mt-2 w-72 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                      <div className="p-4 border-b border-gray-200">
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-xs font-medium text-gray-500">Plan</span>
+                          <span className="text-sm font-semibold text-gray-900">Basic</span>
+                        </div>
+                        <div className="mb-3">
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-xs font-medium text-gray-500">Monthly Credits</span>
+                            <span className="text-xs text-gray-600">Resets January 4, 2026</span>
+                          </div>
+                        </div>
+                        <button className="w-full text-left text-sm text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-1">
+                          Check Usage
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      </div>
+                      <div className="p-4">
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-sm font-medium text-gray-700">Credits Remaining</span>
+                          <span className="text-lg font-bold text-gray-900">100 left</span>
+                        </div>
+                        <Link
+                          href="/pricing"
+                          className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all font-medium text-sm"
+                          onClick={() => setShowCreditsDropdown(false)}
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                          </svg>
+                          Upgrade Plan
+                        </Link>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Pricing Button */}
