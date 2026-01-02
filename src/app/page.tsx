@@ -256,7 +256,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="w-full px-8 py-8">
+        <div className="w-full px-8 py-8 pt-16">
         {/* Hero Section */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-3">
