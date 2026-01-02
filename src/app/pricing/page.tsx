@@ -35,7 +35,7 @@ const PLANS = [
   },
   {
     name: 'Pro',
-    price: 29.99,
+    price: 19.99,
     paperLimit: 'Unlimited',
     features: [
       'Unlimited papers',
@@ -140,7 +140,7 @@ export default function PricingPage() {
                 </h3>
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="text-4xl font-bold text-gray-900">
-                    ${plan.price}
+                    ${plan.price} USD
                   </span>
                   {plan.price > 0 && (
                     <span className="text-gray-600">/month</span>
