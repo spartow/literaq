@@ -115,7 +115,7 @@ export default function CitationsPage() {
         {/* Header */}
         <div className="bg-white border-b border-gray-200">
           <div className="max-w-5xl mx-auto px-8 py-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Free {format} Citation Generator</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Citation Generator</h1>
             <p className="text-gray-600">Generate accurate citations in multiple formats</p>
           </div>
         </div>
