@@ -102,14 +102,15 @@ export default function HomePage() {
       <AppSidebar />
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto bg-gradient-to-br from-gray-50 via-white to-indigo-50 relative">
+      <main className="flex-1 overflow-y-auto bg-gradient-to-br from-gray-50 via-white to-indigo-50 relative lg:ml-0">
         <PageHeader />
 
-        <div className="w-full px-8 py-8 pt-16">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-8 pt-20 lg:pt-16">
         {/* Hero Section */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-3">
-            Transform Your Research<br />with Intelligent AI Assistance
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
+            Transform Your Research<br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>with Intelligent AI Assistance
           </h1>
         </div>
 

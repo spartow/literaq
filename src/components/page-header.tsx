@@ -26,41 +26,41 @@ export function PageHeader() {
   }, [showCreditsDropdown]);
 
   return (
-    <div className="absolute top-6 right-6 z-50 flex items-center gap-3">
+    <div className="absolute top-4 right-4 lg:top-6 lg:right-6 z-50 flex items-center gap-2 lg:gap-3">
       {/* Pricing Button */}
-      <Link href="/pricing" className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors">
+      <Link href="/pricing" className="flex items-center gap-1 lg:gap-2 px-2 lg:px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors">
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
         </svg>
-        Pricing
+        <span className="hidden sm:inline">Pricing</span>
       </Link>
 
       {!isSignedIn ? (
         <>
           {/* Sign In Button */}
-          <Link href="/sign-in" className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors">
+          <Link href="/sign-in" className="hidden sm:flex items-center gap-2 px-2 lg:px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
             </svg>
-            Sign In
+            <span className="hidden lg:inline">Sign In</span>
           </Link>
 
           {/* Sign Up Button */}
-          <Link href="/sign-up" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all shadow-md">
+          <Link href="/sign-up" className="flex items-center gap-1 lg:gap-2 px-3 lg:px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs lg:text-sm font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all shadow-md">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
             </svg>
-            Sign Up
+            <span className="hidden sm:inline">Sign Up</span>
           </Link>
         </>
       ) : (
         <>
           {/* My Account for signed-in users */}
-          <Link href="/library" className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors">
+          <Link href="/library" className="flex items-center gap-1 lg:gap-2 px-2 lg:px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
-            My Account
+            <span className="hidden sm:inline">My Account</span>
           </Link>
         </>
       )}
