@@ -42,7 +42,7 @@ export default function WritePage() {
     <div className="min-h-screen bg-gray-50 relative">
       <PageHeader />
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white border-b border-gray-200 pt-16">
         <div className="max-w-7xl mx-auto px-8 py-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
