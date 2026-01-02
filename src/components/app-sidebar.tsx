@@ -29,8 +29,8 @@ interface NavItem {
 
 const mainNavItems: NavItem[] = [
   { name: 'Home', href: '/', icon: Home },
-  { name: 'My Library', href: '/library', icon: Library },
-  { name: 'Agent Gallery', href: '/assistant', icon: Users },
+  { name: 'Library', href: '/library', icon: Library },
+  { name: 'Agents', href: '/assistant', icon: Users },
 ];
 
 const aiToolsItems: NavItem[] = [
