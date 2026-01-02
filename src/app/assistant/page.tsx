@@ -326,18 +326,29 @@ function FindTablesTool() {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Select Paper
             </label>
-            <select
-              value={selectedPaper}
-              onChange={(e) => setSelectedPaper(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            >
-              <option value="">Choose a paper...</option>
-              {papers.map((paper) => (
-                <option key={paper.id} value={paper.id}>
-                  {paper.title || paper.originalFilename}
-                </option>
-              ))}
-            </select>
+            {papers.length === 0 ? (
+              <div className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50">
+                <p className="text-sm text-gray-600">
+                  No papers in your library. Please upload a PDF first from the{' '}
+                  <a href="/" className="text-indigo-600 hover:text-indigo-700 font-medium">home page</a>
+                  {' '}or{' '}
+                  <a href="/library" className="text-indigo-600 hover:text-indigo-700 font-medium">library</a>.
+                </p>
+              </div>
+            ) : (
+              <select
+                value={selectedPaper}
+                onChange={(e) => setSelectedPaper(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <option value="">Choose a paper...</option>
+                {papers.map((paper) => (
+                  <option key={paper.id} value={paper.id}>
+                    {paper.title || paper.originalFilename}
+                  </option>
+                ))}
+              </select>
+            )}
           </div>
 
           <button
