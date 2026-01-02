@@ -1,6 +1,12 @@
 import type { Metadata } from 'next';
 import { ClerkProvider } from '@clerk/nextjs';
+import { Inter } from 'next/font/google';
 import './globals.css';
+
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Literaq - Your AI Research Assistant',
@@ -15,7 +21,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>{children}</body>
+        <body className={inter.className}>{children}</body>
       </html>
     </ClerkProvider>
   );
