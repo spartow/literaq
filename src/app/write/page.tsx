@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { 
   FileText, 
   Wand2, 
@@ -14,7 +14,15 @@ import {
 
 export default function WritePage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [activeTab, setActiveTab] = useState<'paraphrase' | 'aidetector' | 'writer'>('paraphrase');
+
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab === 'paraphrase' || tab === 'aidetector' || tab === 'writer') {
+      setActiveTab(tab);
+    }
+  }, [searchParams]);
 
   const getPageTitle = () => {
     switch (activeTab) {

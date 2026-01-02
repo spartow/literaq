@@ -19,6 +19,8 @@ import {
   Shield,
   Plus,
   LogOut,
+  RefreshCw,
+  Wand2
 } from 'lucide-react';
 
 interface NavItem {
@@ -40,6 +42,9 @@ const aiToolsItems: NavItem[] = [
   { name: 'Topic Discovery', href: '/search', icon: Lightbulb },
   { name: 'Citation Builder', href: '/citations', icon: Quote },
   { name: 'Data Extraction', href: '/data-extraction', icon: Zap },
+  { name: 'Paraphraser', href: '/write?tab=paraphrase', icon: RefreshCw },
+  { name: 'AI Detector', href: '/write?tab=aidetector', icon: Shield },
+  { name: 'AI Writer', href: '/write?tab=writer', icon: Wand2 },
 ];
 
 export function AppSidebar() {
