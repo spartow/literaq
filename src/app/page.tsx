@@ -100,8 +100,38 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Hamburger Menu - Top Right */}
-        <div className="absolute top-6 right-6 z-50">
+        {/* Top Right Actions - Pricing, Sign In, Sign Up, Hamburger */}
+        <div className="absolute top-6 right-6 z-50 flex items-center gap-3">
+          {/* Pricing Button */}
+          <Link href="/pricing" className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+            </svg>
+            Pricing
+          </Link>
+
+          {!isSignedIn && (
+            <>
+              {/* Sign In Button */}
+              <Link href="/sign-in" className="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg>
+                Sign In
+              </Link>
+
+              {/* Sign Up Button */}
+              <Link href="/sign-up" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all shadow-md">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                </svg>
+                Sign Up
+              </Link>
+            </>
+          )}
+
+          {/* Hamburger Menu */}
+          <div className="relative">
           <button
             onClick={() => setShowCreditsDropdown(!showCreditsDropdown)}
             className="p-3 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors shadow-md"
@@ -168,33 +198,9 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Menu Items */}
-              <div className="p-2">
-                <Link href="/pricing" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setShowCreditsDropdown(false)}>
-                  <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                  </svg>
-                  <span className="text-sm font-semibold text-gray-700">Pricing</span>
-                </Link>
-                {!isSignedIn && (
-                  <>
-                    <Link href="/sign-in" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setShowCreditsDropdown(false)}>
-                      <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                      </svg>
-                      <span className="text-sm font-semibold text-gray-700">Sign In</span>
-                    </Link>
-                    <Link href="/sign-up" className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all mt-2" onClick={() => setShowCreditsDropdown(false)}>
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                      </svg>
-                      <span className="text-sm font-semibold">Sign Up</span>
-                    </Link>
-                  </>
-                )}
-              </div>
             </div>
           )}
+          </div>
         </div>
 
         <div className="w-full px-8 py-8 pt-20">
