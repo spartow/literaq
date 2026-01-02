@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useUser } from '@clerk/nextjs';
 import { 
   FileText, 
   Wand2, 
@@ -11,12 +12,18 @@ import {
   Check,
   Sparkles 
 } from 'lucide-react';
-import { PageHeader } from '@/components/page-header';
 
 export default function WritePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { isSignedIn, isLoaded } = useUser();
   const [activeTab, setActiveTab] = useState<'paraphrase' | 'aidetector' | 'writer'>('paraphrase');
+
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      router.push('/sign-in');
+    }
+  }, [isLoaded, isSignedIn, router]);
 
   useEffect(() => {
     const tab = searchParams.get('tab');
@@ -24,6 +31,10 @@ export default function WritePage() {
       setActiveTab(tab);
     }
   }, [searchParams]);
+
+  if (!isLoaded || !isSignedIn) {
+    return null;
+  }
 
   const getPageTitle = () => {
     switch (activeTab) {
@@ -40,9 +51,8 @@ export default function WritePage() {
 
   return (
     <div className="min-h-screen bg-gray-50 relative">
-      <PageHeader />
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 pt-16">
+      <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-8 py-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">

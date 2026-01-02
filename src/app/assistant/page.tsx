@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { AppSidebar } from '@/components/app-sidebar';
-import { PageHeader } from '@/components/page-header';
 import { 
   FileText, 
   Table2, 
@@ -27,7 +27,18 @@ type Tool =
 
 export default function AssistantPage() {
   const router = useRouter();
+  const { isSignedIn, isLoaded } = useUser();
   const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
+
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      router.push('/sign-in');
+    }
+  }, [isLoaded, isSignedIn, router]);
+
+  if (!isLoaded || !isSignedIn) {
+    return null;
+  }
 
   const getPageTitle = () => {
     if (!selectedTool) return 'Research Review';
@@ -87,9 +98,8 @@ export default function AssistantPage() {
 
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto relative">
-        <PageHeader />
         {/* Page Header */}
-        <div className="bg-white border-b border-gray-200 px-8 py-6 pt-16">
+        <div className="bg-white border-b border-gray-200 px-8 py-6">
           <div className="max-w-5xl mx-auto">
             <div className="flex items-center gap-3 mb-2">
               <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">

@@ -1,17 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { AppSidebar } from '@/components/app-sidebar';
-import { PageHeader } from '@/components/page-header';
 import { Database, Zap, Download, FileText } from 'lucide-react';
 
 export default function DataExtractionPage() {
   const router = useRouter();
+  const { isSignedIn, isLoaded } = useUser();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) {
+      router.push('/sign-in');
+    }
+  }, [isLoaded, isSignedIn, router]);
+
+  if (!isLoaded || !isSignedIn) {
+    return null;
+  }
 
   const extractData = async () => {
     if (!query.trim()) return;
@@ -55,9 +66,8 @@ export default function DataExtractionPage() {
       <AppSidebar />
 
       <div className="flex-1 overflow-y-auto relative">
-        <PageHeader />
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 pt-16">
+        <div className="bg-white border-b border-gray-200">
           <div className="max-w-5xl mx-auto px-8 py-6">
             <div className="flex items-center gap-3 mb-4">
               <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
