@@ -16,6 +16,8 @@ export default function HomePage() {
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showCreditsDropdown, setShowCreditsDropdown] = useState(false);
+  const [searchType, setSearchType] = useState<'all' | 'enhanced'>('all');
+  const [showSearchDropdown, setShowSearchDropdown] = useState(false);
 
   const handleFileUpload = async (file: File) => {
     if (!file) return;
@@ -274,16 +276,40 @@ export default function HomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                   </svg>
                 </label>
-                <button className="flex items-center gap-1.5 px-2.5 py-1.5 hover:bg-gray-100 rounded-lg transition-colors">
-                  <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <span className="text-xs font-medium text-gray-700">All</span>
-                  <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <button className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                <div className="relative">
+                  <button 
+                    onClick={() => setShowSearchDropdown(!showSearchDropdown)}
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
+                    <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span className="text-xs font-medium text-gray-700">{searchType === 'all' ? 'All' : 'Papers'}</span>
+                    <svg className="w-3 h-3 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {showSearchDropdown && (
+                    <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-10 min-w-[120px]">
+                      <button 
+                        onClick={() => { setSearchType('all'); setShowSearchDropdown(false); }}
+                        className="w-full text-left px-3 py-2 text-xs hover:bg-gray-50 transition-colors"
+                      >
+                        All
+                      </button>
+                      <button 
+                        onClick={() => { setSearchType('enhanced'); setShowSearchDropdown(false); }}
+                        className="w-full text-left px-3 py-2 text-xs hover:bg-gray-50 transition-colors"
+                      >
+                        Papers Only
+                      </button>
+                    </div>
+                  )}
+                </div>
+                <button 
+                  onClick={() => router.push('/search')}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+                >
                   <svg className="w-4 h-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
