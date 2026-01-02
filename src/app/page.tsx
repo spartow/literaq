@@ -131,7 +131,7 @@ export default function HomePage() {
           </div>
         </header>
 
-        <div className="max-w-5xl mx-auto px-8 py-8">
+        <div className="w-full px-8 py-8">
         {/* Hero Section */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-indigo-50 rounded-full mb-4">
