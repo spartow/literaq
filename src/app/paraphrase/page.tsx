@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { RefreshCw, Copy, Check } from 'lucide-react';
 import { AppSidebar } from '@/components/app-sidebar';
+import { PageHeader } from '@/components/page-header';
 
 export default function ParaphrasePage() {
   const router = useRouter();
@@ -60,7 +61,8 @@ export default function ParaphrasePage() {
     <div className="flex h-screen bg-gray-50">
       <AppSidebar />
       
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto relative">
+        <PageHeader />
         {/* Header */}
         <div className="bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-8 py-6">
