@@ -15,8 +15,8 @@ const PLANS = [
       'Basic chat functionality',
       'PDF viewer',
     ],
-    cta: 'Current Plan',
-    priceId: null,
+    cta: 'Get Started',
+    priceId: 'free',
   },
   {
     name: 'Basic',
@@ -57,6 +57,12 @@ export default function PricingPage() {
   const [loading, setLoading] = useState<string | null>(null);
 
   const handleSubscribe = async (priceId: string, plan: string) => {
+    // For free plan, just redirect to sign up
+    if (priceId === 'free') {
+      window.location.href = '/sign-up';
+      return;
+    }
+
     if (!isSignedIn) {
       window.location.href = '/sign-up';
       return;
@@ -164,15 +170,15 @@ export default function PricingPage() {
 
               <button
                 onClick={() =>
-                  plan.priceId && handleSubscribe(plan.priceId, plan.name.toLowerCase())
+                  handleSubscribe(plan.priceId, plan.name.toLowerCase())
                 }
-                disabled={!plan.priceId || loading === plan.priceId}
+                disabled={loading === plan.priceId}
                 className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors ${
                   plan.popular
                     ? 'bg-indigo-600 text-white hover:bg-indigo-700'
                     : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
                 } ${
-                  !plan.priceId || loading === plan.priceId
+                  loading === plan.priceId
                     ? 'opacity-50 cursor-not-allowed'
                     : ''
                 }`}
