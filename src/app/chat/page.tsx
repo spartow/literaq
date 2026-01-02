@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Upload, FileText, Loader2, MessageSquare, Sparkles } from 'lucide-react';
 import { AppSidebar } from '@/components/app-sidebar';
+import { PageHeader } from '@/components/page-header';
 
 export default function DocumentChatPage() {
   const router = useRouter();
@@ -80,7 +81,8 @@ export default function DocumentChatPage() {
     <div className="flex h-screen bg-gray-50">
       <AppSidebar />
 
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto relative">
+        <PageHeader />
         <div className="max-w-4xl mx-auto px-8 py-16">
           {/* Header */}
           <div className="text-center mb-12">
