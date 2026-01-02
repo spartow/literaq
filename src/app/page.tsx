@@ -105,17 +105,17 @@ export default function HomePage() {
       <main className="flex-1 overflow-y-auto bg-gradient-to-br from-gray-50 via-white to-indigo-50 relative lg:ml-0">
         <PageHeader />
 
-        <div className="w-full px-4 sm:px-6 lg:px-8 py-8 pt-20 lg:pt-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pt-20 lg:pt-16">
         {/* Hero Section */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Transform Your Research<br className="hidden sm:block" />
             <span className="sm:hidden"> </span>with Intelligent AI Assistance
           </h1>
         </div>
 
         {/* AI Prompt Input */}
-        <div className="mb-6">
+        <div className="mb-8">
           <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-4 backdrop-blur-sm bg-white/90">
             <textarea
               placeholder="What would you like help with today? Describe your research task..."
@@ -186,37 +186,37 @@ export default function HomePage() {
 
 
         {/* Features */}
-        <div className="grid md:grid-cols-3 gap-4 mb-8 mt-6">
-          <Link href="/library" className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-            <div className="relative mb-4">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 w-10 h-10 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
-              <div className="relative bg-gradient-to-br from-indigo-500 to-purple-600 w-10 h-10 rounded-xl flex items-center justify-center mx-auto shadow-lg">
-                <Upload className="w-5 h-5 text-white" />
+        <div className="grid md:grid-cols-3 gap-6 mb-8 mt-8">
+          <Link href="/library" className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+            <div className="relative mb-5">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 w-12 h-12 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
+              <div className="relative bg-gradient-to-br from-indigo-500 to-purple-600 w-12 h-12 rounded-xl flex items-center justify-center mx-auto shadow-lg">
+                <Upload className="w-6 h-6 text-white" />
               </div>
             </div>
-            <h3 className="text-sm font-bold text-gray-900 mb-2">Quick Upload</h3>
-            <p className="text-xs text-gray-600 leading-relaxed">
+            <h3 className="text-base font-bold text-gray-900 mb-2">Quick Upload</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">
               Drop your PDF and start getting insights immediately - no complicated setup required
             </p>
           </Link>
-          <Link href="/assistant" className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-            <div className="relative mb-4">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-600 w-10 h-10 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
-              <div className="relative bg-gradient-to-br from-blue-500 to-cyan-600 w-10 h-10 rounded-xl flex items-center justify-center mx-auto shadow-lg">
-                <FileText className="w-5 h-5 text-white" />
+          <Link href="/assistant" className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+            <div className="relative mb-5">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-600 w-12 h-12 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
+              <div className="relative bg-gradient-to-br from-blue-500 to-cyan-600 w-12 h-12 rounded-xl flex items-center justify-center mx-auto shadow-lg">
+                <FileText className="w-6 h-6 text-white" />
               </div>
             </div>
-            <h3 className="text-sm font-bold text-gray-900 mb-2">Intelligent Processing</h3>
-            <p className="text-xs text-gray-600 leading-relaxed">
+            <h3 className="text-base font-bold text-gray-900 mb-2">Intelligent Processing</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">
               Our AI instantly understands your documents using advanced machine learning
             </p>
           </Link>
-          <Link href="/chat" className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
-            <div className="relative mb-4">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 w-10 h-10 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
-              <div className="relative bg-gradient-to-br from-purple-500 to-pink-600 w-10 h-10 rounded-xl flex items-center justify-center mx-auto shadow-lg">
+          <Link href="/chat" className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-6 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+            <div className="relative mb-5">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 w-12 h-12 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
+              <div className="relative bg-gradient-to-br from-purple-500 to-pink-600 w-12 h-12 rounded-xl flex items-center justify-center mx-auto shadow-lg">
                 <svg
-                  className="w-5 h-5 text-white"
+                  className="w-6 h-6 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -230,8 +230,8 @@ export default function HomePage() {
                 </svg>
               </div>
             </div>
-            <h3 className="text-sm font-bold text-gray-900 mb-2">Conversational AI</h3>
-            <p className="text-xs text-gray-600 leading-relaxed">
+            <h3 className="text-base font-bold text-gray-900 mb-2">Conversational AI</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">
               Get precise answers to your research questions through natural conversation
             </p>
           </Link>
