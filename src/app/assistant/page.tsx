@@ -27,6 +27,12 @@ export default function AssistantPage() {
   const router = useRouter();
   const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
 
+  const getPageTitle = () => {
+    if (!selectedTool) return 'AI Assistant Tools';
+    const tool = tools.find(t => t.id === selectedTool);
+    return tool ? tool.name : 'AI Assistant Tools';
+  };
+
   const tools = [
     {
       id: 'literature-review' as Tool,
@@ -83,7 +89,7 @@ export default function AssistantPage() {
         <div className="bg-white border-b border-gray-200 px-8 py-6">
           <div className="max-w-5xl mx-auto">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              AI Assistant Tools
+              {getPageTitle()}
             </h1>
             <p className="text-gray-600">
               Automate everyday research tasks with powerful AI tools
