@@ -34,7 +34,7 @@ const mainNavItems: NavItem[] = [
 
 const aiToolsItems: NavItem[] = [
   { name: 'Smart Writer', href: '/write', icon: PenTool },
-  { name: 'Document Chat', href: '/', icon: MessageSquare },
+  { name: 'Document Chat', href: '/chat', icon: MessageSquare },
   { name: 'Research Review', href: '/assistant?tool=literature-review', icon: Search },
   { name: 'Topic Discovery', href: '/search', icon: Lightbulb },
   { name: 'Text Rewriter', href: '/assistant?tool=paraphrase', icon: Type },
