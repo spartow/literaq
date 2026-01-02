@@ -85,7 +85,7 @@ export default function SearchPage() {
         {/* Page Header */}
         <div className="max-w-7xl mx-auto px-8 py-6">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900">Search Literature</h1>
+            <h1 className="text-3xl font-bold text-gray-900">Topic Discovery</h1>
           </div>
 
           {/* Search Form */}
