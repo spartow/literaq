@@ -59,10 +59,10 @@ export function AppSidebar() {
     <div className="flex flex-col h-screen w-64 bg-white border-r border-gray-200">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-200">
-        <div className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity cursor-pointer">
           <FileText className="w-8 h-8 text-indigo-600" />
           <span className="text-xl font-bold text-gray-900">Literaq</span>
-        </div>
+        </Link>
       </div>
 
       {/* Navigation */}
