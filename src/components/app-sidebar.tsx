@@ -39,7 +39,7 @@ const aiToolsItems: NavItem[] = [
   { name: 'Research Review', href: '/assistant', icon: Search },
   { name: 'Topic Discovery', href: '/search', icon: Lightbulb },
   { name: 'Citation Builder', href: '/citations', icon: Quote },
-  { name: 'Data Extraction', href: '/assistant', icon: Zap },
+  { name: 'Data Extraction', href: '/data-extraction', icon: Zap },
 ];
 
 export function AppSidebar() {
