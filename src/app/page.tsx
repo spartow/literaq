@@ -7,6 +7,7 @@ import { useUser } from '@clerk/nextjs';
 import { Upload, FileText, Loader2 } from 'lucide-react';
 import { AppSidebar } from '@/components/app-sidebar';
 import { TaskBuilder } from '@/components/task-builder';
+import { ChatbotWidget } from '@/components/chatbot-widget';
 
 export default function HomePage() {
   const router = useRouter();
@@ -269,6 +270,9 @@ export default function HomePage() {
           <TaskBuilder />
         </div>
       </aside>
+      
+      {/* Floating Chatbot Widget */}
+      <ChatbotWidget />
     </div>
   );
 }

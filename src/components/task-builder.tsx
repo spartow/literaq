@@ -143,11 +143,6 @@ export function TaskBuilder() {
         {renderActionSection('USE', useActions.slice(0, 5), '🔧')}
         {renderActionSection('MAKE A', makeActions.slice(0, 5), '📄')}
       </div>
-
-      <button className="w-full mt-8 px-4 py-3.5 text-sm bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-        <Sparkles className="w-4 h-4" />
-        Explore All Tools
-      </button>
     </div>
   );
 }
