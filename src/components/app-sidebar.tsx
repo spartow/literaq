@@ -76,9 +76,17 @@ export function AppSidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto px-4 space-y-1">
+      <nav className="flex-1 overflow-y-auto px-4 py-2">
         {/* Main Navigation */}
-        {mainNavItems.map((item) => {
+        {mainNavItems
+          .filter((item) => {
+            // Hide Library for non-authenticated users
+            if (item.name === 'Library' && !user) {
+              return false;
+            }
+            return true;
+          })
+          .map((item) => {
           const Icon = item.icon;
           return (
             <Link
