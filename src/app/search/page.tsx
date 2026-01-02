@@ -73,12 +73,6 @@ export default function SearchPage() {
       <div className="bg-white border-b border-gray-200">
         {/* Page Header */}
         <div className="max-w-7xl mx-auto px-8 py-6">
-          <div className="flex items-center gap-3 mb-6">
-            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <FileText className="w-8 h-8 text-indigo-600" />
-              <span className="text-xl font-bold text-gray-900">Literaq</span>
-            </Link>
-          </div>
           <div className="mb-6">
             <h1 className="text-3xl font-bold text-gray-900">Topic Discovery</h1>
           </div>

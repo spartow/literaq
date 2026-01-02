@@ -113,12 +113,6 @@ export default function CitationsPage() {
         {/* Header */}
         <div className="bg-white border-b border-gray-200">
           <div className="max-w-5xl mx-auto px-8 py-6">
-            <div className="flex items-center gap-3 mb-4">
-              <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                <Copy className="w-8 h-8 text-indigo-600" />
-                <span className="text-xl font-bold text-gray-900">Literaq</span>
-              </Link>
-            </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Free {format} Citation Generator</h1>
             <p className="text-gray-600">Generate accurate citations in multiple formats</p>
           </div>

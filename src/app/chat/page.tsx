@@ -95,14 +95,6 @@ export default function DocumentChatPage() {
 
       <main className="flex-1 overflow-y-auto relative">
         <div className="max-w-4xl mx-auto px-8 py-16">
-          {/* Literaq Logo */}
-          <div className="flex justify-center mb-8">
-            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <FileText className="w-8 h-8 text-indigo-600" />
-              <span className="text-xl font-bold text-gray-900">Literaq</span>
-            </Link>
-          </div>
-          
           {/* Header */}
           <div className="text-center mb-12">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl mb-6 shadow-lg">
