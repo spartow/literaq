@@ -1,0 +1,234 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+  extensions = [vector]
+}
+
+model User {
+  id                String        @id @default(uuid())
+  clerkId           String        @unique @map("clerk_id")
+  email             String        @unique
+  name              String?
+  stripeCustomerId  String?       @unique @map("stripe_customer_id")
+  subscriptionStatus String       @default("free") @map("subscription_status") // free, active, cancelled, past_due
+  subscriptionPlan  String?       @map("subscription_plan") // basic, pro
+  subscriptionEndDate DateTime?   @map("subscription_end_date")
+  paperCount        Int           @default(0) @map("paper_count")
+  createdAt         DateTime      @default(now()) @map("created_at")
+  updatedAt         DateTime      @updatedAt @map("updated_at")
+  
+  papers            Paper[]
+  collections       Collection[]
+  highlights        Highlight[]
+  annotations       Annotation[]
+  tags              Tag[]
+
+  @@map("users")
+}
+
+model Paper {
+  id                String        @id @default(uuid())
+  userId            String        @map("user_id")
+  title             String?
+  authors           String?
+  abstract          String?       @db.Text
+  publicationDate   DateTime?     @map("publication_date")
+  doi               String?
+  arxivId           String?       @map("arxiv_id")
+  originalFilename  String        @map("original_filename")
+  fileUrl           String?       @map("file_url")
+  status            String        @default("processing") // processing, ready, failed
+  createdAt         DateTime      @default(now()) @map("created_at")
+  
+  user              User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chunks            PaperChunk[]
+  chatSessions      ChatSession[]
+  summary           PaperSummary?
+  highlights        Highlight[]
+  annotations       Annotation[]
+  bookmarks         Bookmark[]
+  paperTags         PaperTag[]
+  collectionPapers  CollectionPaper[]
+
+  @@index([userId])
+  @@index([arxivId])
+  @@index([doi])
+  @@map("papers")
+}
+
+model PaperChunk {
+  id           String                 @id @default(uuid())
+  paperId      String                 @map("paper_id")
+  chunkIndex   Int                    @map("chunk_index")
+  content      String                 @db.Text
+  embedding    Unsupported("vector(1536)")?
+  
+  paper        Paper                  @relation(fields: [paperId], references: [id], onDelete: Cascade)
+
+  @@index([paperId])
+  @@map("paper_chunks")
+}
+
+model ChatSession {
+  id          String        @id @default(uuid())
+  paperId     String        @map("paper_id")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  
+  paper       Paper         @relation(fields: [paperId], references: [id], onDelete: Cascade)
+  messages    ChatMessage[]
+
+  @@index([paperId])
+  @@map("chat_sessions")
+}
+
+model ChatMessage {
+  id              String      @id @default(uuid())
+  chatSessionId   String      @map("chat_session_id")
+  role            String      // user or assistant
+  content         String      @db.Text
+  sourceChunkIds  String[]    @default([]) @map("source_chunk_ids")
+  createdAt       DateTime    @default(now()) @map("created_at")
+  
+  chatSession     ChatSession @relation(fields: [chatSessionId], references: [id], onDelete: Cascade)
+
+  @@index([chatSessionId])
+  @@map("chat_messages")
+}
+
+// Collections for organizing papers
+model Collection {
+  id          String            @id @default(uuid())
+  userId      String            @map("user_id")
+  name        String
+  description String?           @db.Text
+  color       String?           @default("#6366f1")
+  createdAt   DateTime          @default(now()) @map("created_at")
+  updatedAt   DateTime          @updatedAt @map("updated_at")
+  
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  papers      CollectionPaper[]
+
+  @@index([userId])
+  @@map("collections")
+}
+
+model CollectionPaper {
+  id           String     @id @default(uuid())
+  collectionId String     @map("collection_id")
+  paperId      String     @map("paper_id")
+  addedAt      DateTime   @default(now()) @map("added_at")
+  
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  paper        Paper      @relation(fields: [paperId], references: [id], onDelete: Cascade)
+
+  @@unique([collectionId, paperId])
+  @@index([collectionId])
+  @@index([paperId])
+  @@map("collection_papers")
+}
+
+// Text highlights in PDFs
+model Highlight {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  paperId     String   @map("paper_id")
+  text        String   @db.Text
+  color       String   @default("#fbbf24") // yellow, green, blue, pink
+  pageNumber  Int      @map("page_number")
+  position    Json     // Store position data for PDF highlighting
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  paper       Paper    @relation(fields: [paperId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([paperId])
+  @@map("highlights")
+}
+
+// Annotations/notes on papers
+model Annotation {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  paperId     String   @map("paper_id")
+  content     String   @db.Text
+  pageNumber  Int?     @map("page_number")
+  position    Json?    // Optional position if attached to specific text
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  paper       Paper    @relation(fields: [paperId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([paperId])
+  @@map("annotations")
+}
+
+// Bookmarks for quick navigation
+model Bookmark {
+  id          String   @id @default(uuid())
+  paperId     String   @map("paper_id")
+  title       String
+  pageNumber  Int      @map("page_number")
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  paper       Paper    @relation(fields: [paperId], references: [id], onDelete: Cascade)
+
+  @@index([paperId])
+  @@map("bookmarks")
+}
+
+// AI-generated paper summaries (cached)
+model PaperSummary {
+  id            String   @id @default(uuid())
+  paperId       String   @unique @map("paper_id")
+  tldr          String   @db.Text
+  keyFindings   String[] @map("key_findings")
+  methodology   String?  @db.Text
+  createdAt     DateTime @default(now()) @map("created_at")
+  
+  paper         Paper    @relation(fields: [paperId], references: [id], onDelete: Cascade)
+
+  @@map("paper_summaries")
+}
+
+// Tags for categorization
+model Tag {
+  id          String     @id @default(uuid())
+  userId      String     @map("user_id")
+  name        String
+  color       String?    @default("#6366f1")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  paperTags   PaperTag[]
+
+  @@unique([userId, name])
+  @@index([userId])
+  @@map("tags")
+}
+
+model PaperTag {
+  id        String   @id @default(uuid())
+  paperId   String   @map("paper_id")
+  tagId     String   @map("tag_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  
+  paper     Paper    @relation(fields: [paperId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([paperId, tagId])
+  @@index([paperId])
+  @@index([tagId])
+  @@map("paper_tags")
+}

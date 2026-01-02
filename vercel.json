@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npx prisma generate && next build",
+  "functions": {
+    "src/app/api/**/*.ts": {
+      "maxDuration": 300
+    }
+  }
+}
