@@ -36,12 +36,12 @@ const mainNavItems: NavItem[] = [
 const aiToolsItems: NavItem[] = [
   { name: 'Smart Writer', href: '/write', icon: PenTool },
   { name: 'Document Chat', href: '/chat', icon: MessageSquare },
-  { name: 'Research Review', href: '/assistant?tool=literature-review', icon: Search },
+  { name: 'Research Review', href: '/assistant', icon: Search },
   { name: 'Topic Discovery', href: '/search', icon: Lightbulb },
-  { name: 'Text Rewriter', href: '/assistant?tool=paraphrase', icon: Type },
-  { name: 'Citation Builder', href: '/assistant?tool=citation', icon: Quote },
-  { name: 'Data Extraction', href: '/assistant?tool=extract-data', icon: Zap },
-  { name: 'Content Detector', href: '/assistant?tool=ai-detector', icon: Shield },
+  { name: 'Text Rewriter', href: '/write', icon: Type },
+  { name: 'Citation Builder', href: '/assistant', icon: Quote },
+  { name: 'Data Extraction', href: '/assistant', icon: Zap },
+  { name: 'Content Detector', href: '/write', icon: Shield },
 ];
 
 export function AppSidebar() {
