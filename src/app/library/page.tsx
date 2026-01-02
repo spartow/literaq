@@ -55,7 +55,7 @@ export default function LibraryPage() {
         {/* Header */}
         <div className="bg-white border-b border-gray-200 px-8 py-6">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Library</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">My Library</h1>
             
             {/* Search Bar */}
             <div className="flex gap-4">
