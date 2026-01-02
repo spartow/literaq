@@ -216,6 +216,8 @@ function AIDetectorTool() {
     if (!inputText.trim()) return;
 
     setIsAnalyzing(true);
+    setResult(null); // Clear previous result
+    
     try {
       const res = await fetch('/api/writing/ai-detector', {
         method: 'POST',
@@ -226,9 +228,13 @@ function AIDetectorTool() {
       if (res.ok) {
         const data = await res.json();
         setResult(data);
+      } else {
+        const errorData = await res.json().catch(() => ({}));
+        alert(`Error: ${errorData.error || 'Failed to detect AI content. Please try again.'}`);
       }
     } catch (error) {
       console.error('AI detection error:', error);
+      alert('Error: Unable to connect to AI detection service. Please check your connection and try again.');
     } finally {
       setIsAnalyzing(false);
     }
