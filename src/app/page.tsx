@@ -199,7 +199,7 @@ export default function HomePage() {
 
         {/* Features */}
         <div className="grid md:grid-cols-3 gap-4 mb-8 mt-6">
-          <div className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <Link href="/library" className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
             <div className="relative mb-4">
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 w-10 h-10 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
               <div className="relative bg-gradient-to-br from-indigo-500 to-purple-600 w-10 h-10 rounded-xl flex items-center justify-center mx-auto shadow-lg">
@@ -210,8 +210,8 @@ export default function HomePage() {
             <p className="text-xs text-gray-600 leading-relaxed">
               Drop your PDF and start getting insights immediately - no complicated setup required
             </p>
-          </div>
-          <div className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          </Link>
+          <Link href="/assistant" className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
             <div className="relative mb-4">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-600 w-10 h-10 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
               <div className="relative bg-gradient-to-br from-blue-500 to-cyan-600 w-10 h-10 rounded-xl flex items-center justify-center mx-auto shadow-lg">
@@ -222,8 +222,8 @@ export default function HomePage() {
             <p className="text-xs text-gray-600 leading-relaxed">
               Our AI instantly understands your documents using advanced machine learning
             </p>
-          </div>
-          <div className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          </Link>
+          <Link href="/chat" className="group bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200 p-5 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
             <div className="relative mb-4">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-600 w-10 h-10 rounded-xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
               <div className="relative bg-gradient-to-br from-purple-500 to-pink-600 w-10 h-10 rounded-xl flex items-center justify-center mx-auto shadow-lg">
@@ -246,7 +246,7 @@ export default function HomePage() {
             <p className="text-xs text-gray-600 leading-relaxed">
               Get precise answers to your research questions through natural conversation
             </p>
-          </div>
+          </Link>
         </div>
         </div>
       </main>
