@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { 
   BookOpen, 
   FileText, 
@@ -40,15 +41,15 @@ interface ActionCard {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
   color: string;
-  action?: () => void;
+  href?: string;
 }
 
 const wantToActions: ActionCard[] = [
-  { icon: BookOpen, label: 'Review Literature', color: 'bg-blue-500' },
-  { icon: PenTool, label: 'Write a Draft', color: 'bg-red-500' },
-  { icon: BarChart3, label: 'Generate Diagram', color: 'bg-blue-600' },
-  { icon: Search, label: 'Search Papers', color: 'bg-pink-500' },
-  { icon: Database, label: 'Extract Data', color: 'bg-green-600' },
+  { icon: BookOpen, label: 'Review Literature', color: 'bg-blue-500', href: '/assistant?tool=literature-review' },
+  { icon: PenTool, label: 'Write a Draft', color: 'bg-red-500', href: '/assistant?tool=draft-writer' },
+  { icon: BarChart3, label: 'Generate Diagram', color: 'bg-blue-600', href: '/assistant' },
+  { icon: Search, label: 'Search Papers', color: 'bg-pink-500', href: '/search' },
+  { icon: Database, label: 'Extract Data', color: 'bg-green-600', href: '/assistant?tool=extract-data' },
   { icon: Eye, label: 'Review my Writing', color: 'bg-red-600' },
   { icon: FileText, label: 'Write a Report', color: 'bg-red-500' },
   { icon: TableProperties, label: 'Analyse Data', color: 'bg-orange-500' },
@@ -68,11 +69,11 @@ const wantToActions: ActionCard[] = [
 ];
 
 const useActions: ActionCard[] = [
-  { icon: Layers, label: 'Deep Review', color: 'bg-orange-500' },
-  { icon: BookOpen, label: 'Pubmed', color: 'bg-gray-600' },
-  { icon: GraduationCap, label: 'Google Scholar', color: 'bg-blue-600' },
-  { icon: FileCode, label: 'ArXiV', color: 'bg-red-600' },
-  { icon: Code2, label: 'Python Library', color: 'bg-blue-500' },
+  { icon: Layers, label: 'Deep Review', color: 'bg-orange-500', href: '/assistant' },
+  { icon: BookOpen, label: 'Pubmed', color: 'bg-gray-600', href: '/search' },
+  { icon: GraduationCap, label: 'Google Scholar', color: 'bg-blue-600', href: '/search' },
+  { icon: FileCode, label: 'ArXiV', color: 'bg-red-600', href: '/search' },
+  { icon: Code2, label: 'Python Library', color: 'bg-blue-500', href: '/assistant' },
   { icon: Globe, label: 'Grants.gov', color: 'bg-blue-900' },
   { icon: FileText, label: 'Uploaded Files', color: 'bg-red-500' },
   { icon: FlaskConical, label: 'ClinicalTrials.gov', color: 'bg-blue-700' },
@@ -97,6 +98,14 @@ const makeActions: ActionCard[] = [
 ];
 
 export function TaskBuilder() {
+  const router = useRouter();
+
+  const handleActionClick = (href?: string) => {
+    if (href) {
+      router.push(href);
+    }
+  };
+
   const renderActionSection = (title: string, actions: ActionCard[], emoji: string) => (
     <div className="mb-6">
       <div className="flex items-center gap-2 mb-3 px-1">
@@ -111,7 +120,7 @@ export function TaskBuilder() {
           return (
             <button
               key={idx}
-              onClick={action.action}
+              onClick={() => handleActionClick(action.href)}
               className="w-full flex items-center gap-3 px-3.5 py-3 hover:bg-white hover:shadow-md rounded-xl transition-all group border border-transparent hover:border-gray-200"
             >
               <div className={`${action.color} w-5 h-5 rounded-lg flex items-center justify-center flex-shrink-0 shadow-sm group-hover:shadow-md transition-shadow`}>
@@ -141,6 +150,7 @@ export function TaskBuilder() {
             return (
               <button
                 key={idx}
+                onClick={() => handleActionClick(action.href)}
                 className="w-full flex items-center gap-3 px-3 py-2.5 bg-white hover:bg-indigo-50 rounded-lg transition-all group shadow-sm hover:shadow-md"
               >
                 <div className={`${action.color} w-5 h-5 rounded-lg flex items-center justify-center flex-shrink-0`}>
