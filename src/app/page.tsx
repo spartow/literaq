@@ -262,9 +262,6 @@ export default function HomePage() {
           <h1 className="text-3xl font-bold text-gray-900 mb-3">
             Transform Your Research<br />with Intelligent AI Assistance
           </h1>
-          <p className="text-sm text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Describe your research goal below and let Literaq&apos;s AI handle the heavy lifting - from data analysis to paper summaries, we&apos;ve got you covered.
-          </p>
         </div>
 
         {/* AI Prompt Input */}
