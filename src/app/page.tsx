@@ -11,6 +11,7 @@ import { ChatbotWidget } from '@/components/chatbot-widget';
 
 export default function HomePage() {
   const router = useRouter();
+  const { isSignedIn } = useUser();
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -101,27 +102,29 @@ export default function HomePage() {
 
           {showCreditsDropdown && (
             <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200">
-              {/* Credits Section */}
-              <div className="p-4 border-b border-gray-200">
-                <div className="flex items-center justify-between px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg">
-                  <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                    </svg>
-                    <span className="text-sm font-semibold text-gray-900">100 Credits</span>
+              {/* Credits Section - Only for signed in users */}
+              {isSignedIn && (
+                <div className="p-4 border-b border-gray-200">
+                  <div className="flex items-center justify-between px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                      </svg>
+                      <span className="text-sm font-semibold text-gray-900">100 Credits</span>
+                    </div>
+                  </div>
+                  <div className="mt-2 p-4 bg-gray-50 rounded-lg">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-medium text-gray-500">Plan</span>
+                      <span className="text-sm font-semibold text-gray-900">Basic</span>
+                    </div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm font-medium text-gray-700">Credits Remaining</span>
+                      <span className="text-lg font-bold text-gray-900">100 left</span>
+                    </div>
                   </div>
                 </div>
-                <div className="mt-2 p-4 bg-gray-50 rounded-lg">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs font-medium text-gray-500">Plan</span>
-                    <span className="text-sm font-semibold text-gray-900">Basic</span>
-                  </div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm font-medium text-gray-700">Credits Remaining</span>
-                    <span className="text-lg font-bold text-gray-900">100 left</span>
-                  </div>
-                </div>
-              </div>
+              )}
 
               {/* Quick Actions */}
               <div className="p-4 border-b border-gray-200">
@@ -162,18 +165,22 @@ export default function HomePage() {
                   </svg>
                   <span className="text-sm font-semibold text-gray-700">Pricing</span>
                 </Link>
-                <Link href="/sign-in" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setShowCreditsDropdown(false)}>
-                  <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                  </svg>
-                  <span className="text-sm font-semibold text-gray-700">Sign In</span>
-                </Link>
-                <Link href="/sign-up" className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all mt-2" onClick={() => setShowCreditsDropdown(false)}>
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                  </svg>
-                  <span className="text-sm font-semibold">Sign Up</span>
-                </Link>
+                {!isSignedIn && (
+                  <>
+                    <Link href="/sign-in" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors" onClick={() => setShowCreditsDropdown(false)}>
+                      <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                      </svg>
+                      <span className="text-sm font-semibold text-gray-700">Sign In</span>
+                    </Link>
+                    <Link href="/sign-up" className="flex items-center gap-3 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all mt-2" onClick={() => setShowCreditsDropdown(false)}>
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                      </svg>
+                      <span className="text-sm font-semibold">Sign Up</span>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           )}
