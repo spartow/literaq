@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { AppSidebar } from '@/components/app-sidebar';
+import { PageHeader } from '@/components/page-header';
 import { FileText, Calendar, User, Tag, Download, Trash2, FolderPlus, Sparkles, Search as SearchIcon } from 'lucide-react';
 import Link from 'next/link';
 
@@ -51,7 +52,8 @@ export default function LibraryPage() {
       <AppSidebar />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden relative">
+        <PageHeader />
         {/* Header */}
         <div className="bg-white border-b border-gray-200 px-8 py-6">
           <div className="max-w-7xl mx-auto">
