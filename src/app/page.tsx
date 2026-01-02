@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { useUser } from '@clerk/nextjs';
 import { Upload, FileText, Loader2 } from 'lucide-react';
 import { AppSidebar } from '@/components/app-sidebar';
 import { TaskBuilder } from '@/components/task-builder';
@@ -99,31 +101,31 @@ export default function HomePage() {
                 </div>
 
                 {/* Pricing Button */}
-                <a
+                <Link
                   href="/pricing"
-                  className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                 >
                   <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                   </svg>
                   <span className="text-sm font-semibold text-gray-700">Pricing</span>
-                </a>
+                </Link>
 
                 {/* Sign In Button */}
-                <a
+                <Link
                   href="/sign-in"
-                  className="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors"
+                  className="px-4 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-colors cursor-pointer"
                 >
                   Sign In
-                </a>
+                </Link>
 
                 {/* Sign Up Button */}
-                <a
+                <Link
                   href="/sign-up"
-                  className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg"
+                  className="px-4 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all shadow-md hover:shadow-lg cursor-pointer"
                 >
                   Sign Up
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -186,74 +188,9 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Upload Area */}
-        <div className="mb-12">
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 p-8">
-          <div className="text-center mb-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Or start with a document</h3>
-            <p className="text-sm text-gray-500">Upload a research paper and ask questions about it</p>
-          </div>
-          <div
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            className={`border-2 border-dashed rounded-xl p-12 text-center transition-all duration-300 ${
-              isDragging
-                ? 'border-indigo-500 bg-indigo-50 scale-[1.02]'
-                : 'border-gray-300 bg-gradient-to-br from-gray-50 to-indigo-50/30 hover:border-indigo-400'
-            }`}
-          >
-            {isUploading ? (
-              <div className="space-y-4">
-                <Loader2 className="w-16 h-16 text-indigo-600 mx-auto animate-spin" />
-                <div className="space-y-2">
-                  <p className="text-lg font-semibold text-gray-900">
-                    Processing your paper...
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Extracting text, generating embeddings, and preparing for chat.
-                    This may take a minute.
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                <Upload className="w-12 h-12 text-indigo-600 mx-auto" />
-                <div className="space-y-2">
-                  <p className="text-base text-gray-600">
-                    Drag and drop your PDF here, or click to browse
-                  </p>
-                  <p className="text-xs text-gray-500 flex items-center justify-center gap-2">
-                    <span className="inline-block w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                    Maximum file size: 10MB
-                  </p>
-                </div>
-                <label className="inline-block group">
-                  <input
-                    type="file"
-                    accept=".pdf"
-                    onChange={handleFileInput}
-                    className="hidden"
-                    disabled={isUploading}
-                  />
-                  <span className="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-indigo-600 text-indigo-600 font-semibold rounded-xl hover:bg-indigo-50 transition-all cursor-pointer">
-                    <Upload className="w-4 h-4" />
-                    Select PDF File
-                  </span>
-                </label>
-              </div>
-            )}
-          </div>
-
-          {error && (
-            <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-sm text-red-600">{error}</p>
-            </div>
-          )}
-        </div>
 
         {/* Features */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-6 mb-16 mt-8">
           <div className="group bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
             <div className="relative mb-6">
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600 w-14 h-14 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity mx-auto"></div>
@@ -302,7 +239,6 @@ export default function HomePage() {
               Get precise answers to your research questions through natural conversation
             </p>
           </div>
-        </div>
         </div>
         </div>
       </main>
