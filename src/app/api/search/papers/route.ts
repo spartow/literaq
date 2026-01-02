@@ -4,11 +4,7 @@ import { searchPapers } from '@/lib/paper-search';
 
 export async function GET(req: NextRequest) {
   try {
-    const { userId } = auth();
-    if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
+    // Allow public access to search
     const { searchParams } = new URL(req.url);
     const query = searchParams.get('q');
     const sources = searchParams.get('sources')?.split(',') as ('arxiv' | 'pubmed')[] || ['arxiv'];
