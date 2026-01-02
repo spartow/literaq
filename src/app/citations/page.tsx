@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { AppSidebar } from '@/components/app-sidebar';
+import { PageHeader } from '@/components/page-header';
 import { Copy, Check, Search } from 'lucide-react';
 
 type CitationFormat = 'APA' | 'MLA' | 'Chicago' | 'Harvard';
@@ -110,10 +111,11 @@ export default function CitationsPage() {
       <AppSidebar />
 
       <div className="flex-1 overflow-y-auto relative">
+        <PageHeader />
         {/* Header */}
         <div className="bg-white border-b border-gray-200">
           <div className="max-w-5xl mx-auto px-8 py-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Citation Generator</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Free {format} Citation Generator</h1>
             <p className="text-gray-600">Generate accurate citations in multiple formats</p>
           </div>
         </div>
