@@ -9,8 +9,8 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("POSTGRES_PRISMA_URL")
-  // directUrl = env("POSTGRES_URL_NON_POOLING")  // Not needed for now
-  // extensions = [vector]  // Temporarily disabled for deployment
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+  extensions = [vector]
 }
 
 model User {
@@ -70,7 +70,7 @@ model PaperChunk {
   paperId      String                 @map("paper_id")
   chunkIndex   Int                    @map("chunk_index")
   content      String                 @db.Text
-  // embedding    Unsupported("vector(1536)")?  // Temporarily disabled for deployment
+  embedding    Unsupported("vector(1536)")?
   
   paper        Paper                  @relation(fields: [paperId], references: [id], onDelete: Cascade)
 
